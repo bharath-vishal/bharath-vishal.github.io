@@ -46,6 +46,11 @@
   </div>
 
   <div class="card">
+    <div class="flex"><h2>Work Experience</h2><button onclick="addExperience()">+ Add Experience</button></div>
+    <div id="experience" class="list"></div>
+  </div>
+
+  <div class="card">
     <div class="flex"><h2>Projects (PDFs)</h2><button class="ghost" onclick="scanProjects()">Scan GitHub</button><button onclick="addProject()">+ Add</button></div>
     <div id="projects" class="list"></div>
   </div>
@@ -80,7 +85,7 @@
 const PASSWORD="*Bharath1";
 const OWNER="bharath-vishal";
 const REPO="bharath-vishal.github.io";
-let data={about:"",skills:[],projects:[],blogs:[],certifications:[],resumeUrl:"resume.pdf"};
+let data={about:"",skills:[],experience:[],projects:[],blogs:[],certifications:[],resumeUrl:"resume.pdf"};
 
 function login(){
   if(document.getElementById('pass').value===PASSWORD){
@@ -101,7 +106,33 @@ function render(){
   document.getElementById('about').value=data.about||"";
   document.getElementById('skills').value=(data.skills||[]).join(', ');
   document.getElementById('resume').value=data.resumeUrl||"resume.pdf";
-  renderProjects();renderBlogs();renderCerts();
+  renderExperience();renderProjects();renderBlogs();renderCerts();
+}
+
+/* ---------- WORK EXPERIENCE ---------- */
+function renderExperience(){
+  const c=document.getElementById('experience');c.innerHTML='';
+  (data.experience||[]).forEach((exp,i)=>{
+    const d=document.createElement('div');d.className='item';
+    d.innerHTML=`
+      <div class="flex"><b>${exp.title||'Experience '+(i+1)}</b>
+        <div>
+          <button class="ghost" onclick="moveItem(data.experience,${i},-1,renderExperience)">↑</button>
+          <button class="ghost" onclick="moveItem(data.experience,${i},1,renderExperience)">↓</button>
+          <button class="danger" onclick="delItem(data.experience,${i},renderExperience)">✕</button>
+        </div>
+      </div>
+      <label>Job Title</label><input value="${exp.title||''}" onchange="data.experience[${i}].title=this.value">
+      <label>Company</label><input value="${exp.company||''}" onchange="data.experience[${i}].company=this.value">
+      <label>Duration (e.g., Jan 2020 - Present)</label><input value="${exp.duration||''}" onchange="data.experience[${i}].duration=this.value">
+      <label>Description</label><textarea onchange="data.experience[${i}].description=this.value">${exp.description||''}</textarea>
+    `;
+    c.appendChild(d);
+  });
+}
+function addExperience(){
+  data.experience.push({title:"Job Title",company:"Company Name",duration:"Jan 2020 - Present",description:""});
+  renderExperience();
 }
 
 /* ---------- PROJECTS ---------- */
