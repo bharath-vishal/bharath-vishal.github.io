@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Bharath Vishal – Portfolio</title>
+<link rel="icon" href="" />
+<style>
+  :root {
+    --bg:#0f1115;
+    --muted:#9aa3ad;
+    --glass: rgba(255,255,255,0.04);
+    font-family: Inter, ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  html,body{height:100%;margin:0;background:var(--bg);color:#e6eef6;}
+  .page{max-width:1100px;margin:36px auto;padding:28px;}
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .nav{display:flex;gap:12px}
+  .nav a{color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:12px;transition:.18s}
+  .nav a:hover{background:rgba(255,255,255,0.03);color:#fff}
+  .hero{display:grid;grid-template-columns:1fr 400px;gap:32px;padding:28px;background:var(--glass);
+        border-radius:20px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+  .photo-container{display:flex;flex-direction:column;align-items:center;gap:20px}
+  .photo{width:280px;height:280px;border-radius:50%;overflow:hidden;
+         border:4px solid rgba(255,255,255,0.08);background:#1b2430;display:flex;align-items:center;
+         justify-content:center;box-shadow:0 12px 40px rgba(0,0,0,0.4);position:relative}
+  .photo img{width:100%;height:100%;object-fit:cover}
+  .card{background:rgba(255,255,255,0.02);padding:18px;border-radius:14px;margin-top:12px}
+  .skills{display:flex;flex-wrap:wrap;gap:8px}
+  .skill{border:1px solid rgba(255,255,255,0.05);padding:6px 10px;border-radius:10px;font-size:0.9rem;color:var(--muted)}
+  main{margin-top:18px;display:grid;gap:22px}
+  .section{padding:18px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.03)}
+
+  /* Blog Carousel */
+  .carousel-container{position:relative;overflow:hidden;margin-top:12px}
+  .carousel{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.2) transparent}
+  .carousel::-webkit-scrollbar{height:8px}
+  .carousel::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:4px}
+  .blog-card{min-width:320px;background:rgba(255,255,255,0.03);padding:18px;border-radius:14px;
+             cursor:pointer;border:1px solid rgba(255,255,255,0.05);transition:.3s;flex-shrink:0}
+  .blog-card:hover{background:rgba(255,255,255,0.05);transform:translateY(-4px);
+                   box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .blog-card h3{margin:10px 0 6px 0;font-size:1.1rem}
+  .blog-card .date{color:var(--muted);font-size:0.85rem;margin-bottom:8px}
+  .blog-card .excerpt{color:var(--muted);font-size:0.9rem;display:-webkit-box;
+                      -webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .carousel-nav{display:flex;justify-content:center;gap:12px;margin-top:16px}
+  .carousel-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
+                padding:8px 16px;border-radius:10px;color:#e6eef6;cursor:pointer;transition:.2s;border:none}
+  .carousel-btn:hover{background:rgba(255,255,255,0.08)}
+
+  /* Blog Page */
+  .blog-page{display:none;position:fixed;inset:0;background:var(--bg);z-index:1000;overflow-y:auto}
+  .blog-page.active{display:block;animation:fadeIn 0.3s ease}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .blog-content{max-width:800px;margin:0 auto;padding:60px 28px 40px 28px}
+  .blog-header{margin-bottom:32px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:24px}
+  .blog-header h1{font-size:2.2rem;margin:0 0 12px 0;line-height:1.2}
+  .blog-header .subheading{font-size:1.2rem;color:var(--muted);margin-bottom:16px;line-height:1.4}
+  .blog-header .meta{color:var(--muted);font-size:0.9rem}
+  .blog-body{line-height:1.8;font-size:1.05rem}
+  .blog-body p{margin:20px 0;color:#d1dce6}
+  .blog-image{margin:30px 0;text-align:center}
+  .blog-image img{max-width:100%;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.05)}
+  .blog-image figcaption{margin-top:12px;color:var(--muted);font-size:0.9rem;font-style:italic}
+  .close-blog{position:fixed;top:20px;right:28px;background:rgba(255,255,255,0.05);
+              border:1px solid rgba(255,255,255,0.1);padding:10px 20px;border-radius:12px;
+              cursor:pointer;color:#e6eef6;transition:.2s;z-index:1001;font-size:0.95rem}
+  .close-blog:hover{background:rgba(255,255,255,0.1)}
+
+  .project-frame{width:100%;height:480px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-top:16px}
+  .project-item{background:rgba(255,255,255,0.02);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.05)}
+  footer{margin-top:28px;text-align:center;color:var(--muted)}
+  .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:12px;color:var(--muted);text-decoration:none;display:inline-block}
+  .btn:hover{background:rgba(255,255,255,0.03)}
+</style>
+</head>
+<body>
+<div class="page" id="mainPage">
+  <header>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,#1abcff22,#7b61ff22);
+      display:flex;align-items:center;justify-content:center;font-weight:700">BV</div>
+      <div>
+        <div style="font-weight:700">Bharath Vishal</div>
+        <div style="font-size:12px;color:var(--muted)">Product Analyst · AI automation · Design systems</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#blogs">Blogs</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+      <a class="btn" href="admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1 id="heroName">Hi – I'm Bharath</h1>
+      <p id="heroTag">I bring human simplicity into complex AI systems.</p>
+      <div class="card">
+        <b>Skills</b>
+        <div class="skills" id="skills"></div>
+      </div>
+    </div>
+    <div class="photo-container">
+      <div class="photo"><img id="heroPhoto" src="photo.png" alt="Bharath photo"></div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section" id="about"><h2>About</h2><div id="aboutText"></div></section>
+    
+    <section class="section" id="blogs">
+      <h2>Blogs</h2>
+      <div class="carousel-container">
+        <div class="carousel" id="blogCarousel"></div>
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" onclick="scrollCarousel(-1)">← Previous</button>
+        <button class="carousel-btn" onclick="scrollCarousel(1)">Next →</button>
+      </div>
+    </section>
+    
+    <section class="section" id="projects">
+      <h2>Projects</h2>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </section>
+
+    <section class="section" id="resume">
+      <h2>Resume</h2>
+      <a id="resumeLink" class="btn" href="resume.pdf" target="_blank">📄 View Resume</a>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <a id="contactEmail" href="#">you@example.com</a>
+    </section>
+  </main>
+  <footer>© Bharath Vishal – Built for simplicity</footer>
+</div>
+
+<div class="blog-page" id="blogPage">
+  <button class="close-blog" onclick="closeBlog()">✕ Close</button>
+  <div class="blog-content">
+    <div class="blog-header">
+      <h1 id="blogTitle"></h1>
+      <div class="subheading" id="blogSubheading"></div>
+      <div class="meta" id="blogMeta"></div>
+    </div>
+    <div class="blog-body" id="blogBody"></div>
+  </div>
+</div>
+
+<script>
+async function loadSite() {
+  try {
+    const res = await fetch('site-data.json?v=' + Date.now());
+    const data = await res.json();
+
+    // ABOUT
+    document.getElementById('aboutText').textContent = data.about || '';
+
+    // SKILLS
+    const skillsDiv = document.getElementById('skills');
+    skillsDiv.innerHTML = (data.skills || [])
+      .map(skill => `<span class="skill">${skill}</span>`)
+      .join('');
+
+    // PROJECTS — add PDF preview (iframe)
+    const projDiv = document.getElementById('projectsGrid');
+    projDiv.innerHTML = (data.projects || [])
+      .map(p => `
+        <div class="project-item">
+          <h3>${p.title || p.pdfUrl}</h3>
+          ${p.description ? `<p>${p.description}</p>` : ''}
+          ${
+            p.pdfUrl
+              ? `<iframe class="project-frame" src="${p.pdfUrl}#toolbar=0&navpanes=0" 
+                   title="${p.title || 'Project PDF Preview'}"></iframe>`
+              : ''
+          }
+          ${
+            p.pdfUrl
+              ? `<p><a href="${p.pdfUrl}" target="_blank" class="btn">📄 View Full PDF</a></p>`
+              : ''
+          }
+          ${
+            p.link
+              ? `<p><a href="${p.link}" target="_blank" class="btn">🔗 Open Project</a></p>`
+              : ''
+          }
+        </div>
+      `)
+      .join('');
+
+    // BLOGS — show image previews in carousel
+    const blogs = (data.blogs || [])
+      .filter(b => !/resume/i.test(b.title || "")) // skip “resume” posts
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    const blogDiv = document.getElementById('blogCarousel');
+    blogDiv.innerHTML = blogs
+      .map(blog => `
+        <div class="blog-card" onclick="openBlog(${JSON.stringify(blog).replace(/"/g, '&quot;')})">
+          ${
+            blog.image
+              ? `<div style="height:160px;overflow:hidden;border-radius:10px;margin-bottom:10px">
+                   <img src="${blog.image}" alt="${blog.title}" style="width:100%;height:100%;object-fit:cover;">
+                 </div>`
+              : ''
+          }
+          <h3>${blog.title}</h3>
+          <div class="date">${blog.date || ''}</div>
+          <div class="excerpt">${blog.subheading || ''}</div>
+        </div>
+      `)
+      .join('');
+
+    // RESUME
+    document.getElementById('resumeLink').href = data.resumeUrl || 'resume.pdf';
+
+    // CONTACT
+    if (data.contactEmail) {
+      document.getElementById('contactEmail').textContent = data.contactEmail;
+      document.getElementById('contactEmail').href = `mailto:${data.contactEmail}`;
+    }
+  } catch (err) {
+    console.error("Error loading JSON:", err);
+    document.getElementById('aboutText').textContent =
+      "Error loading site-data.json. Check file path or syntax.";
+  }
+}
+
+// BLOG VIEW HANDLERS
+function openBlog(blog) {
+  document.getElementById('mainPage').style.display = 'none';
+  document.getElementById('blogPage').classList.add('active');
+  document.getElementById('blogTitle').textContent = blog.title || '';
+  document.getElementById('blogSubheading').textContent = blog.subheading || '';
+  document.getElementById('blogMeta').textContent = blog.date || '';
+  document.getElementById('blogBody').innerHTML = `
+    ${blog.image ? `<figure class="blog-image">
+      <img src="${blog.image}" alt="">
+      ${blog.imageCaption ? `<figcaption>${blog.imageCaption}</figcaption>` : ''}
+    </figure>` : ''}
+    <p>${(blog.content || '').replace(/\n/g, '</p><p>')}</p>
+  `;
+}
+
+function closeBlog() {
+  document.getElementById('blogPage').classList.remove('active');
+  document.getElementById('mainPage').style.display = '';
+}
+
+function scrollCarousel(dir) {
+  document.getElementById('blogCarousel').scrollBy({
+    left: dir * 400,
+    behavior: 'smooth'
+  });
+}
+
+loadSite();
+</script>
+</body>
+</html>

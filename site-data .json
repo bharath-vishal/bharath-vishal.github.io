@@ -1,0 +1,82 @@
+{
+  "about": "Hey! I’m Bharath Vishal — welcome to my little corner of the internet.\nThis site is basically a mix of everything I do and learn — a blend of my career in AI product management, my experiments in data and design, and the random thoughts that spill out of my head when I’m trying to make sense of how tech actually feels human.\n\nI’ve spent the past few years moving between analytics, automation, and product roles — figuring out how to connect the dots between data, users, and business. Somewhere along the way, I realized I love that intersection — where logic meets creativity.\n\nSo here you’ll find my projects, blogs, and sometimes even half-baked ideas that explore how AI can make products more human (and maybe a little smarter).\n\nThink of this site as part blog, part resume, part digital whiteboard — and 100% me trying to build, learn, and share as I go.",
+  "skills": [
+    "Python",
+    "SQL",
+    "Power BI",
+    "Tableau",
+    "Excel",
+    "Scikit-learn",
+    "Pandas",
+    "NumPy",
+    "Matplotlib",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "REST API",
+    "JSON",
+    "Git",
+    "GitHub",
+    "Figma",
+    "Adobe XD",
+    "Jira",
+    "Confluence",
+    "Google Analytics",
+    "Mixpanel",
+    "Amplitude",
+    "AI",
+    "Machine Learning",
+    "NLP",
+    "Data Visualization",
+    "Data Cleaning",
+    "Feature Engineering",
+    "Automation",
+    "Forecasting",
+    "A/B Testing"
+  ],
+  "projects": [
+    {
+      "pdfUrl": "ppt1.pdf",
+      "title": "Netflix Portfolio"
+    }
+  ],
+  "blogs": [
+    {
+      "title": "India’s Quick Commerce Revolution: Why Blinkit, Zepto, and Swiggy Are Building More Than Speed",
+      "subheading": "Inside India’s 10-minute delivery wave — and how it’s quietly creating a new kind of digital workforce",
+      "date": "2025-10-29",
+      "image": "https://in.pinterest.com/pin/431078995605896073/",
+      "imageCaption": "The real product isn’t delivery — it’s infrastructure.",
+      "content": "Quick commerce in India isn’t just about groceries arriving faster. It’s about a system learning how to breathe — cities adapting to new logistics, workers adapting to micro-opportunities, and technology learning to serve in real time.\n\nCompanies like Blinkit, Zepto, and Swiggy Instamart have turned chaos into choreography. Every order triggers a symphony of data — micro-hubs, riders, and routes syncing within seconds. The user sees convenience. But under the hood, it’s India’s most complex real-time AI network in motion.\n\nBeyond speed, this is reshaping the idea of urban employment. Thousands of gig workers are learning operations, logistics, and digital literacy — unintentionally building the country’s next dynamic workforce. These 10-minute jobs are gateways to future skills.\n\nThe beauty of it? India isn’t just consuming innovation — it’s *producing it at scale.* Quick commerce is becoming a live experiment in human-AI coordination, setting the stage for smarter, hyperlocal economies.\n\nSpeed was just the starting point. What’s being built is a new kind of infrastructure — one that learns, adapts, and grows with every delivery.\n\n"
+    },
+    {
+      "title": "The Game Theory of Greatness: How Jensen Huang Bet NVIDIA’s Future on a Road Nobody Took",
+      "subheading": "Why risk, patience, and game theory made NVIDIA the backbone of the AI era Date",
+      "date": "2025-10-29",
+      "image": "https://i.pinimg.com/736x/ec/79/55/ec79554fc3c2dd650d3808487480cf80.jpg",
+      "imageCaption": "Jensen Huang speaking at NVIDIA GTC — calm, calculated, and always ahead.",
+      "content": "In the late 2000s, NVIDIA was a gaming company in an industry obsessed with pixels and frame rates. The world saw GPUs as toys for gamers. Jensen Huang saw something else — a misunderstood piece of silicon that could change the future of computing.\n\nWhile most companies optimized for the *next quarter*, Huang was playing a longer game — a game-theory mindset where every small loss was a move toward an unbeatable position. He bet on AI when nobody cared about deep learning. He built hardware powerful enough to run workloads that didn’t even exist yet.\n\nWhen AI researchers started using GPUs to train neural networks, NVIDIA wasn’t lucky — it was *ready*. The company had built the perfect architecture for an unpredicted revolution. Huang’s philosophy came straight out of the \"Road Not Taken\" mindset — do what others ignore, and own the space when they finally notice.\n\nThat’s what true product leadership looks like: not chasing trends, but placing deliberate, asymmetric bets on the future.  \nIn Huang’s world, playing safe isn’t strategy — it’s surrender.\n"
+    },
+    {
+      "title": "The Trauma That Built Apple: How Steve Jobs Turned Rejection Into Obsession",
+      "subheading": "What Steve Jobs’ early pain teaches us about purpose, design, and building things",
+      "date": "2025-10-29",
+      "image": "https://i.pinimg.com/1200x/21/a5/82/21a5828d2c654074be50df67202269ec.jpg",
+      "imageCaption": "Steve Jobs with his iconic Mac",
+      "content": "When you read about Steve Jobs, it’s easy to focus on the perfectionist — the man obsessed with fonts, curves, and the shade of aluminum. But behind the legend was a story of rejection, identity, and the lifelong need to create something that made sense of chaos.\n\nJobs was adopted, and though his adoptive parents gave him immense love, the wound of being given up left a mark. His need for control — over design, over experience, over meaning — was his way of finding certainty in a world that once told him he didn’t belong.\n\nThis is why Apple products don’t just work — they *feel*. The smooth interface, the silent click, the minimalist design — they all reflect Jobs’ search for emotional order. His trauma became his aesthetic language: simple, centered, complete.\n\nWhen he was fired from Apple, it was like being abandoned all over again. But that pain made him softer, wiser. When he returned, his focus shifted from control to clarity. He stopped trying to prove something — and started trying to *create something timeless.*\n\nThe result? Apple became more than a tech company. It became a mirror of one man’s emotional evolution — from rejection to realization.\n"
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Miles Mover Award",
+      "issuer": "Schneider Electric",
+      "year": "2023"
+    },
+    {
+      "title": "PSPO",
+      "issuer": "Scrum.org",
+      "year": "2023"
+    }
+  ],
+  "resumeUrl": "resume.pdf"
+}
