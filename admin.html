@@ -8,7 +8,7 @@
   :root{--bg:#0f1115;--muted:#9aa3ad}
   body{background:var(--bg);color:#e6eef6;font-family:Inter,system-ui,Arial;margin:0;padding:24px}
   .card{background:rgba(255,255,255,0.03);border-radius:12px;padding:20px;margin-bottom:20px}
-  input,textarea{width:100%;padding:8px;margin:6px 0;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.15);color:#fff;font-size:15px}
+  input,textarea{width:100%;padding:8px;margin:6px 0;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.15);color:#fff;font-size:15px;box-sizing:border-box}
   textarea{min-height:80px}
   button{background:#2563eb;border:none;color:#fff;padding:9px 14px;border-radius:8px;cursor:pointer;margin-top:6px}
   button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.1)}
@@ -19,6 +19,7 @@
   .flex{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap}
   .small{font-size:13px;color:var(--muted)}
   .img-preview{max-width:100%;margin-top:8px;border-radius:8px}
+  label{display:block;margin-top:8px;font-size:14px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -43,6 +44,11 @@
   <div class="card">
     <h2>Skills (comma separated)</h2>
     <input id="skills" placeholder="Python, AI/ML, Product Management">
+  </div>
+
+  <div class="card">
+    <div class="flex"><h2>Education</h2><button onclick="addEducation()">+ Add Education</button></div>
+    <div id="education" class="list"></div>
   </div>
 
   <div class="card">
@@ -85,7 +91,7 @@
 const PASSWORD="*Bharath1";
 const OWNER="bharath-vishal";
 const REPO="bharath-vishal.github.io";
-let data={about:"",skills:[],experience:[],projects:[],blogs:[],certifications:[],resumeUrl:"resume.pdf"};
+let data={about:"",skills:[],education:[],experience:[],projects:[],blogs:[],certifications:[],resumeUrl:"resume.pdf"};
 
 function login(){
   if(document.getElementById('pass').value===PASSWORD){
@@ -106,7 +112,34 @@ function render(){
   document.getElementById('about').value=data.about||"";
   document.getElementById('skills').value=(data.skills||[]).join(', ');
   document.getElementById('resume').value=data.resumeUrl||"resume.pdf";
-  renderExperience();renderProjects();renderBlogs();renderCerts();
+  renderEducation();renderExperience();renderProjects();renderBlogs();renderCerts();
+}
+
+/* ---------- EDUCATION ---------- */
+function renderEducation(){
+  const c=document.getElementById('education');c.innerHTML='';
+  (data.education||[]).forEach((edu,i)=>{
+    const d=document.createElement('div');d.className='item';
+    d.innerHTML=`
+      <div class="flex"><b>${edu.degree||'Education '+(i+1)}</b>
+        <div>
+          <button class="ghost" onclick="moveItem(data.education,${i},-1,renderEducation)">↑</button>
+          <button class="ghost" onclick="moveItem(data.education,${i},1,renderEducation)">↓</button>
+          <button class="danger" onclick="delItem(data.education,${i},renderEducation)">✕</button>
+        </div>
+      </div>
+      <label>Degree</label><input value="${edu.degree||''}" onchange="data.education[${i}].degree=this.value">
+      <label>Institution</label><input value="${edu.institution||''}" onchange="data.education[${i}].institution=this.value">
+      <label>Year (e.g., 2015-2019 or 2019)</label><input value="${edu.year||''}" onchange="data.education[${i}].year=this.value">
+      <label>Description (optional)</label><textarea onchange="data.education[${i}].description=this.value">${edu.description||''}</textarea>
+    `;
+    c.appendChild(d);
+  });
+}
+function addEducation(){
+  if(!data.education)data.education=[];
+  data.education.push({degree:"Degree Name",institution:"University Name",year:"2015-2019",description:""});
+  renderEducation();
 }
 
 /* ---------- WORK EXPERIENCE ---------- */
@@ -131,6 +164,7 @@ function renderExperience(){
   });
 }
 function addExperience(){
+  if(!data.experience)data.experience=[];
   data.experience.push({title:"Job Title",company:"Company Name",duration:"Jan 2020 - Present",description:""});
   renderExperience();
 }
@@ -154,7 +188,11 @@ function renderProjects(){
     c.appendChild(d);
   });
 }
-function addProject(){data.projects.push({title:"New Project",pdfUrl:"project.pdf"});renderProjects();}
+function addProject(){
+  if(!data.projects)data.projects=[];
+  data.projects.push({title:"New Project",pdfUrl:"project.pdf"});
+  renderProjects();
+}
 
 /* ---------- BLOGS ---------- */
 function renderBlogs(){
@@ -181,6 +219,7 @@ function renderBlogs(){
   });
 }
 function addBlog(){
+  if(!data.blogs)data.blogs=[];
   data.blogs.unshift({title:"New Blog",subheading:"",date:today(),image:"",imageCaption:"",content:""});
   renderBlogs();
 }
@@ -205,7 +244,11 @@ function renderCerts(){
     c.appendChild(d);
   });
 }
-function addCert(){data.certifications.push({title:"New Certification",issuer:"",year:""});renderCerts();}
+function addCert(){
+  if(!data.certifications)data.certifications=[];
+  data.certifications.push({title:"New Certification",issuer:"",year:""});
+  renderCerts();
+}
 
 /* ---------- UTIL ---------- */
 function moveItem(arr,i,dir,reRender){const j=i+dir;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];reRender();}
