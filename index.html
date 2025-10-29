@@ -164,6 +164,8 @@
 </div>
 
 <script>
+let scrollTimer;
+
 async function loadSite() {
   try {
     const res = await fetch('site-data.json?v=' + Date.now());
@@ -205,7 +207,7 @@ async function loadSite() {
       document.getElementById('contactEmail').href = `mailto:${data.contactEmail}`;
     }
 
-    autoScrollCarousel(); // start scrolling
+    autoScrollCarousel();
   } catch (err) {
     console.error("Error loading JSON:", err);
     document.getElementById('aboutText').textContent = "Error loading site-data.json.";
@@ -233,15 +235,23 @@ function closeBlog() {
   document.getElementById('mainPage').style.display = '';
 }
 
-// Auto-scroll carousel (2× faster)
+// Auto-scroll carousel (2× speed, no refresh issue, pause on hover)
 function autoScrollCarousel() {
   const carousel = document.getElementById("blogCarousel");
   let scrollAmount = 0;
-  setInterval(() => {
-    scrollAmount += 2; // ← double the speed
-    if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) scrollAmount = 0;
-    carousel.scrollTo({ left: scrollAmount, behavior: "smooth" });
-  }, 50);
+  let speed = 2;
+
+  if (scrollTimer) clearInterval(scrollTimer);
+
+  scrollTimer = setInterval(() => {
+    if (!carousel.matches(":hover")) {
+      scrollAmount += speed;
+      if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
+        scrollAmount = 0;
+      }
+      carousel.scrollLeft = scrollAmount;
+    }
+  }, 30);
 }
 
 loadSite();
