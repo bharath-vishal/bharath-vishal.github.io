@@ -166,6 +166,88 @@
 
   footer{text-align:center;color:var(--muted);margin-top:28px}
 
+  /* Work Experience styling */
+  .experience-item{
+    background:var(--card);
+    border:1px solid rgba(255,255,255,0.05);
+    border-radius:12px;
+    padding:16px 18px;
+    transition:background .22s, transform .18s;
+  }
+  .experience-item:hover{
+    background:rgba(255,255,255,0.06);
+    transform:translateX(4px);
+  }
+  .exp-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:8px;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .exp-title{
+    font-size:1.1rem;
+    font-weight:600;
+    margin:0;
+  }
+  .exp-company{
+    color:var(--accent);
+    font-size:0.95rem;
+    margin:4px 0;
+  }
+  .exp-duration{
+    color:var(--muted);
+    font-size:0.85rem;
+    white-space:nowrap;
+  }
+  .exp-description{
+    color:var(--muted);
+    line-height:1.6;
+    margin-top:8px;
+  }
+
+  /* Education styling */
+  .education-item{
+    background:var(--card);
+    border:1px solid rgba(255,255,255,0.05);
+    border-radius:12px;
+    padding:16px 18px;
+    transition:background .22s, transform .18s;
+  }
+  .education-item:hover{
+    background:rgba(255,255,255,0.06);
+    transform:translateX(4px);
+  }
+  .edu-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:8px;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .edu-degree{
+    font-size:1.1rem;
+    font-weight:600;
+    margin:0;
+  }
+  .edu-institution{
+    color:var(--accent);
+    font-size:0.95rem;
+    margin:4px 0;
+  }
+  .edu-year{
+    color:var(--muted);
+    font-size:0.85rem;
+    white-space:nowrap;
+  }
+  .edu-details{
+    color:var(--muted);
+    line-height:1.6;
+    margin-top:8px;
+  }
+
   /* small responsive tweaks */
   @media (max-width:880px){
     .hero{grid-template-columns:1fr; padding:22px}
@@ -192,6 +274,8 @@
     <nav class="nav">
       <a href="#blogs">Blogs</a>
       <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
       <a href="#resume">Resume</a>
       <a href="#contact">Contact</a>
       <a class="admin" href="admin.html">Admin</a>
@@ -233,6 +317,18 @@
       <div class="btn-container">
         <button class="load-more-btn" id="loadMoreProjects" style="display:none">Load More</button>
       </div>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section class="section" id="experience">
+      <h2>Work Experience</h2>
+      <div id="experienceList" style="display:flex;flex-direction:column;gap:16px"></div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section" id="education">
+      <h2>Education</h2>
+      <div id="educationList" style="display:flex;flex-direction:column;gap:16px"></div>
     </section>
 
     <!-- RESUME -->
@@ -304,6 +400,8 @@ async function runTypewriter() {
 const ITEMS_PER_PAGE = 9;
 let allBlogs = [];
 let allProjects = [];
+let allExperience = [];
+let allEducation = [];
 let blogsShown = 0;
 let projectsShown = 0;
 
@@ -321,9 +419,13 @@ async function loadSite() {
 
     allBlogs = (data.blogs || []).filter(b => !/resume/i.test((b.title||''))).sort((a,b)=>new Date(b.date)-new Date(a.date));
     allProjects = (data.projects || []);
+    allExperience = (data.experience || []);
+    allEducation = (data.education || []);
 
     renderBlogs();
     renderProjects();
+    renderExperience();
+    renderEducation();
 
     document.getElementById('loadMoreBlogs').onclick = loadMoreBlogs;
     document.getElementById('loadMoreProjects').onclick = loadMoreProjects;
@@ -369,6 +471,62 @@ function loadMoreBlogs() {
 
 function loadMoreProjects() {
   renderProjects();
+}
+
+function renderExperience() {
+  const expList = document.getElementById('experienceList');
+  if (!allExperience || allExperience.length === 0) {
+    expList.innerHTML = '<p style="color:var(--muted)">No work experience added yet.</p>';
+    return;
+  }
+  
+  expList.innerHTML = allExperience.map(exp => experienceItemHtml(exp)).join('');
+}
+
+function experienceItemHtml(exp) {
+  const title = escapeHtml(exp.title || 'Position');
+  const company = escapeHtml(exp.company || '');
+  const duration = escapeHtml(exp.duration || '');
+  const description = escapeHtml(exp.description || '');
+  
+  return `<div class="experience-item">
+    <div class="exp-header">
+      <div>
+        <h3 class="exp-title">${title}</h3>
+        ${company ? `<div class="exp-company">${company}</div>` : ''}
+      </div>
+      ${duration ? `<div class="exp-duration">${duration}</div>` : ''}
+    </div>
+    ${description ? `<div class="exp-description">${description}</div>` : ''}
+  </div>`;
+}
+
+function renderEducation() {
+  const eduList = document.getElementById('educationList');
+  if (!allEducation || allEducation.length === 0) {
+    eduList.innerHTML = '<p style="color:var(--muted)">No education entries added yet.</p>';
+    return;
+  }
+  
+  eduList.innerHTML = allEducation.map(edu => educationItemHtml(edu)).join('');
+}
+
+function educationItemHtml(edu) {
+  const degree = escapeHtml(edu.degree || 'Degree');
+  const institution = escapeHtml(edu.institution || '');
+  const year = escapeHtml(edu.year || '');
+  const details = escapeHtml(edu.details || '');
+  
+  return `<div class="education-item">
+    <div class="edu-header">
+      <div>
+        <h3 class="edu-degree">${degree}</h3>
+        ${institution ? `<div class="edu-institution">${institution}</div>` : ''}
+      </div>
+      ${year ? `<div class="edu-year">${year}</div>` : ''}
+    </div>
+    ${details ? `<div class="edu-details">${details}</div>` : ''}
+  </div>`;
 }
 
 function blogCardHtml(b){
