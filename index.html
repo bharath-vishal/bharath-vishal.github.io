@@ -54,9 +54,27 @@
   }
 
   /* left column */
-  .hero .intro h1{font-size:1.8rem;margin:0}
-  .hero .intro p { color:var(--muted); margin:10px 0 12px 0; max-width:640px; }
-  .skills-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .hero .intro { min-height: 140px; }
+  .typewrap { font-family: inherit; color: #e6eef6; }
+  .hero .intro h1{ font-size:1.8rem; margin:0; font-weight:700; display:inline-block; }
+  .hero .intro .tagline{ display:block; margin-top:8px; color:var(--muted); font-size:1rem; max-width:680px; }
+
+  /* Cursor styling */
+  .type-cursor {
+    display:inline-block;
+    width:12px;
+    margin-left:6px;
+    opacity:1;
+    vertical-align:bottom;
+  }
+  @keyframes blink {
+    0% { opacity:1 }
+    50% { opacity:0 }
+    100% { opacity:1 }
+  }
+  .cursor-blink { animation: blink 900ms step-end infinite; }
+
+  .skills-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
   .skill{background:var(--card);border:1px solid rgba(255,255,255,0.06);padding:6px 12px;border-radius:999px;font-size:0.9rem;color:var(--muted)}
 
   /* right column: circular photo centered vertically */
@@ -65,7 +83,6 @@
          background:#1b2430;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px rgba(0,0,0,0.4)}
   .photo img{width:100%;height:100%;object-fit:cover;display:block}
 
-  /* small card below hero for any extra (kept minimal) */
   .small-card{background:var(--card);padding:14px;border-radius:12px;margin-top:16px;border:1px solid rgba(255,255,255,0.04)}
 
   main{margin-top:22px;display:grid;gap:20px}
@@ -74,17 +91,16 @@
 
   h2{margin-top:0;margin-bottom:12px}
 
-  /* CAROUSEL (shared styles) */
-  .carousel-rail{position:relative;overflow:hidden}
-  .carousel{display:flex;gap:16px;align-items:stretch;overflow-x:auto;scroll-behavior:smooth;
-            scrollbar-width:none;padding-bottom:8px}
-  .carousel::-webkit-scrollbar{display:none}
+  /* GRID layout for blogs and projects */
+  .content-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+    margin-bottom:16px;
+  }
 
-  /* BLOG CARD — fixed, balanced height with 16:9 image */
+  /* BLOG CARD */
   .blog-card{
-    width:320px;
-    min-width:320px;
-    max-width:320px;
     background:var(--card);
     border-radius:12px;
     border:1px solid rgba(255,255,255,0.05);
@@ -93,7 +109,7 @@
     flex-direction:column;
     cursor:pointer;
     transition:transform .22s, box-shadow .22s, background .22s;
-    height:260px; /* lock overall height */
+    height:260px;
   }
   .blog-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,0.45);background:rgba(255,255,255,0.06)}
   .blog-image{width:100%;aspect-ratio:16/9;overflow:hidden;flex-shrink:0}
@@ -103,16 +119,44 @@
   .blog-meta .date{color:var(--muted);font-size:0.8rem;margin-top:6px}
   .blog-meta .excerpt{color:var(--muted);font-size:0.9rem;margin-top:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
-  /* PROJECT CARD — similar compact layout; show iframe preview if pdfUrl present */
+  /* PROJECT CARD */
   .project-card{
-    width:320px;min-width:320px;max-width:320px;border-radius:12px;background:var(--card);border:1px solid rgba(255,255,255,0.05);
-    overflow:hidden;display:flex;flex-direction:column;height:260px;
+    border-radius:12px;
+    background:var(--card);
+    border:1px solid rgba(255,255,255,0.05);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    height:260px;
   }
   .project-thumb{width:100%;aspect-ratio:16/9;overflow:hidden;flex-shrink:0;background:#0b0d0f}
   .project-thumb iframe{width:100%;height:100%;border:0;display:block}
   .project-meta{padding:10px 12px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
   .project-meta h3{margin:0;font-size:1rem}
   .project-meta a{color:var(--accent);text-decoration:none;font-size:0.9rem}
+
+  /* Load More button */
+  .load-more-btn{
+    background:var(--glass);
+    border:1px solid rgba(255,255,255,0.08);
+    color:#e6eef6;
+    padding:12px 24px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:0.95rem;
+    transition:background .22s, transform .18s;
+    display:inline-block;
+    margin:0 auto;
+  }
+  .load-more-btn:hover{
+    background:rgba(255,255,255,0.08);
+    transform:translateY(-2px);
+  }
+  .load-more-btn:disabled{
+    opacity:0.5;
+    cursor:not-allowed;
+  }
+  .btn-container{text-align:center;margin-top:16px}
 
   /* socials */
   .socials{display:flex;justify-content:center;gap:36px;margin-top:8px}
@@ -126,7 +170,11 @@
   @media (max-width:880px){
     .hero{grid-template-columns:1fr; padding:22px}
     .photo{width:200px;height:200px}
-    .blog-card,.project-card{width:280px;min-width:280px;max-width:280px;height:240px}
+    .content-grid{grid-template-columns:1fr;gap:16px}
+    .blog-card,.project-card{height:240px}
+  }
+  @media (min-width:881px) and (max-width:1100px){
+    .content-grid{grid-template-columns:repeat(2, 1fr)}
   }
 </style>
 </head>
@@ -153,10 +201,11 @@
   <!-- HERO -->
   <section class="hero" id="heroCard">
     <div class="intro">
-      <h1>Hi — I'm Bharath</h1>
-      <!-- about paragraph will be injected here from JSON -->
-      <p id="aboutInline" style="margin-bottom:10px;color:var(--muted)"></p>
-
+      <!-- Typewriter title and tagline -->
+      <div class="typewrap">
+        <h1 id="typeTitle" aria-live="polite"></h1><span id="titleCursor" class="type-cursor"></span>
+        <div class="tagline" id="typeTagline" aria-live="polite"></div><span id="tagCursor" class="type-cursor"></span>
+      </div>
       <div class="skills-row" id="skillsRow" aria-hidden="false"></div>
     </div>
 
@@ -165,23 +214,24 @@
     </div>
   </section>
 
-  <!-- Optional small card (kept minimal) -->
   <div class="small-card" id="smallCard" style="display:none"></div>
 
   <main>
     <!-- BLOGS -->
     <section class="section" id="blogs">
       <h2>Blogs</h2>
-      <div class="carousel-rail">
-        <div class="carousel" id="blogCarousel" aria-live="polite"></div>
+      <div class="content-grid" id="blogGrid" aria-live="polite"></div>
+      <div class="btn-container">
+        <button class="load-more-btn" id="loadMoreBlogs" style="display:none">Load More</button>
       </div>
     </section>
 
     <!-- PROJECTS -->
     <section class="section" id="projects">
       <h2>Projects</h2>
-      <div class="carousel-rail">
-        <div class="carousel" id="projCarousel" aria-live="polite"></div>
+      <div class="content-grid" id="projGrid" aria-live="polite"></div>
+      <div class="btn-container">
+        <button class="load-more-btn" id="loadMoreProjects" style="display:none">Load More</button>
       </div>
     </section>
 
@@ -207,67 +257,130 @@
 </div>
 
 <script>
-/*
-  Behaviour:
-   - load site-data.json
-   - render hero/about/skills
-   - render blogs and projects into their carousels
-   - duplicate carousel content to allow seamless continuous looping
-   - use requestAnimationFrame scroll loop that moves content right → left (fast)
-   - pause scrolling on hover
-*/
+/* ========== Typewriter ========== */
+const titleText = "Hi — I'm Bharath";
+const taglineText = "I bring human simplicity into complex AI systems.";
 
-const BLOG_SPEED_PX_PER_FRAME = 2.6;   // fast
-const PROJ_SPEED_PX_PER_FRAME = 2.2;   // slightly different speed
+const TITLE_SPEED = 80;
+const TAG_SPEED = 40;
+const PAUSE_AFTER_TITLE = 350;
 
-let blogRAF = null, projRAF = null;
-let blogEl, projEl;
-let blogScrollBase = 0, projScrollBase = 0;
+function setCursorBlink(el) {
+  el.classList.add('cursor-blink');
+}
+function stopCursorBlink(el) {
+  el.classList.remove('cursor-blink');
+  el.style.opacity = '1';
+}
+
+async function typeTo(el, text, speed, cursorEl) {
+  el.textContent = '';
+  cursorEl.style.opacity = '1';
+  for (let i = 0; i < text.length; i++) {
+    el.textContent += text[i];
+    await new Promise(r => setTimeout(r, speed));
+  }
+  setCursorBlink(cursorEl);
+}
+
+async function runTypewriter() {
+  const titleEl = document.getElementById('typeTitle');
+  const titleCursor = document.getElementById('titleCursor');
+  const tagEl = document.getElementById('typeTagline');
+  const tagCursor = document.getElementById('tagCursor');
+
+  titleCursor.textContent = '|';
+  tagCursor.textContent = '|';
+  titleCursor.style.opacity = '1';
+  tagCursor.style.opacity = '0';
+
+  stopCursorBlink(tagCursor);
+  stopCursorBlink(titleCursor);
+
+  await typeTo(titleEl, titleText, TITLE_SPEED, titleCursor);
+  await new Promise(r => setTimeout(r, PAUSE_AFTER_TITLE));
+
+  titleCursor.style.opacity = '0.6';
+  tagCursor.style.opacity = '1';
+  await typeTo(tagEl, taglineText, TAG_SPEED, tagCursor);
+
+  setCursorBlink(titleCursor);
+  setCursorBlink(tagCursor);
+}
+
+/* ========== Grid with Load More ========== */
+const ITEMS_PER_PAGE = 9;
+let allBlogs = [];
+let allProjects = [];
+let blogsShown = 0;
+let projectsShown = 0;
 
 async function loadSite() {
   try {
     const res = await fetch('site-data.json?v=' + Date.now());
     const data = await res.json();
 
-    // Hero about & hero photo
-    document.getElementById('aboutInline').textContent = data.about || '';
     if (data.heroPhoto) document.getElementById('heroPhoto').src = data.heroPhoto;
 
-    // Skills
     const skillsRow = document.getElementById('skillsRow');
     skillsRow.innerHTML = (data.skills || []).map(s => `<div class="skill">${escapeHtml(s)}</div>`).join('');
 
-    // Resume
     document.getElementById('resumeLink').href = data.resumeUrl || 'resume.pdf';
 
-    // Blogs
-    const blogs = (data.blogs || []).filter(b => !/resume/i.test((b.title||''))).sort((a,b)=>new Date(b.date)-new Date(a.date));
-    blogEl = document.getElementById('blogCarousel');
-    blogEl.innerHTML = blogs.map(b => blogCardHtml(b)).join('');
-    // duplicate content for seamless loop
-    blogEl.innerHTML += blogEl.innerHTML;
-    // reset scroll
-    blogEl.scrollLeft = 0;
+    allBlogs = (data.blogs || []).filter(b => !/resume/i.test((b.title||''))).sort((a,b)=>new Date(b.date)-new Date(a.date));
+    allProjects = (data.projects || []);
 
-    // Projects
-    const projs = (data.projects || []);
-    projEl = document.getElementById('projCarousel');
-    projEl.innerHTML = projs.map(p => projectCardHtml(p)).join('');
-    projEl.innerHTML += projEl.innerHTML;
-    projEl.scrollLeft = 0;
+    renderBlogs();
+    renderProjects();
 
-    // start continuous scroll loops
-    startContinuousLoop(blogEl, BLOG_SPEED_PX_PER_FRAME, 'blog');
-    startContinuousLoop(projEl, PROJ_SPEED_PX_PER_FRAME, 'proj');
+    document.getElementById('loadMoreBlogs').onclick = loadMoreBlogs;
+    document.getElementById('loadMoreProjects').onclick = loadMoreProjects;
 
   } catch (err) {
     console.error('Error loading site-data.json', err);
-    document.getElementById('aboutInline').textContent = 'Error loading content.';
   }
 }
 
+function renderBlogs() {
+  const blogGrid = document.getElementById('blogGrid');
+  const loadMoreBtn = document.getElementById('loadMoreBlogs');
+  
+  const nextBlogs = allBlogs.slice(blogsShown, blogsShown + ITEMS_PER_PAGE);
+  blogGrid.innerHTML += nextBlogs.map(b => blogCardHtml(b)).join('');
+  blogsShown += nextBlogs.length;
+
+  if (blogsShown >= allBlogs.length) {
+    loadMoreBtn.style.display = 'none';
+  } else {
+    loadMoreBtn.style.display = 'inline-block';
+  }
+}
+
+function renderProjects() {
+  const projGrid = document.getElementById('projGrid');
+  const loadMoreBtn = document.getElementById('loadMoreProjects');
+  
+  const nextProjects = allProjects.slice(projectsShown, projectsShown + ITEMS_PER_PAGE);
+  projGrid.innerHTML += nextProjects.map(p => projectCardHtml(p)).join('');
+  projectsShown += nextProjects.length;
+
+  if (projectsShown >= allProjects.length) {
+    loadMoreBtn.style.display = 'none';
+  } else {
+    loadMoreBtn.style.display = 'inline-block';
+  }
+}
+
+function loadMoreBlogs() {
+  renderBlogs();
+}
+
+function loadMoreProjects() {
+  renderProjects();
+}
+
 function blogCardHtml(b){
-  const img = b.image ? `<div class="blog-image"><img src="${escapeAttr(b.image)}" alt="${escapeAttr(b.title||'')}" /></div>` : '';
+  const img = b.image ? `<div class="blog-image"><img src="${escapeAttr(b.image)}" alt="${escapeAttr(b.title||'')}" /></div>` : `<div class="blog-image" style="background:#0b0d0f"></div>`;
   const title = escapeHtml(b.title||'Untitled');
   const sub = escapeHtml(b.subheading||'');
   const date = escapeHtml(b.date||'');
@@ -286,7 +399,7 @@ function blogCardHtml(b){
 function projectCardHtml(p){
   const title = escapeHtml(p.title||p.pdfUrl||'Project');
   const pdf = p.pdfUrl || '';
-  const thumb = p.thumbnail || ''; // optional thumbnail field
+  const thumb = p.thumbnail || '';
   const imgBlock = thumb ? `<div class="project-thumb"><img src="${escapeAttr(thumb)}" style="width:100%;height:100%;object-fit:cover;"></div>` :
                    (pdf ? `<div class="project-thumb"><iframe src="${escapeAttr(pdf)}#toolbar=0&navpanes=0" loading="lazy"></iframe></div>` : `<div class="project-thumb"></div>`);
   const link = pdf ? `<a href="${escapeAttr(pdf)}" target="_blank">Open PDF</a>` : (p.link? `<a href="${escapeAttr(p.link)}" target="_blank">Open</a>` : '');
@@ -299,36 +412,6 @@ function projectCardHtml(p){
   </div>`;
 }
 
-/* continuous loop engine using requestAnimationFrame
-   - duplicates content beforehand (we already did)
-   - when scrollLeft >= halfScrollWidth, reset to 0 to loop seamlessly
-   - moves content by speed px/frame (positive moves content right->left)
-*/
-function startContinuousLoop(el, speed, tag){
-  // cancel previous if exists
-  if(tag === 'blog' && blogRAF){ cancelAnimationFrame(blogRAF); blogRAF = null; }
-  if(tag === 'proj' && projRAF){ cancelAnimationFrame(projRAF); projRAF = null; }
-
-  // compute half-width after a tiny delay so images can layout
-  requestAnimationFrame(() => {
-    const half = el.scrollWidth / 2;
-    let step = function(){
-      // pause when hovering
-      if (!el.matches(':hover')){
-        el.scrollLeft += speed;
-        if (el.scrollLeft >= half) {
-          // jump back
-          el.scrollLeft = el.scrollLeft - half;
-        }
-      }
-      if(tag === 'blog') blogRAF = requestAnimationFrame(step);
-      else projRAF = requestAnimationFrame(step);
-    };
-    step();
-  });
-}
-
-// handle opening blog — show a simple modal-like view
 function openBlog(blog){
   try{
     const overlay = document.createElement('div');
@@ -351,15 +434,12 @@ function openBlog(blog){
   }catch(e){ console.error(e); }
 }
 
-/* small helpers */
 function escapeHtml(s){ if(!s && s!==0) return ''; return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
 function escapeAttr(s){ if(!s && s!==0) return ''; return String(s).replaceAll('"','&quot;').replaceAll("'","&#39;"); }
 
-/* start */
+/* start everything */
+runTypewriter();
 loadSite();
-
-/* cleanup on unload */
-window.addEventListener('beforeunload', ()=>{ if(blogRAF) cancelAnimationFrame(blogRAF); if(projRAF) cancelAnimationFrame(projRAF); });
 </script>
 </body>
 </html>
