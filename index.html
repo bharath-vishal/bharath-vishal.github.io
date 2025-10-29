@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Bharath Vishal – Portfolio</title>
-<link rel="icon" href="" />
+<link rel="icon" href="Images/photo.png" />
 <style>
-  :root {
+  :root{
     --bg:#0f1115;
     --muted:#9aa3ad;
     --glass: rgba(255,255,255,0.04);
@@ -44,10 +44,6 @@
   .blog-card .date{color:var(--muted);font-size:0.85rem;margin-bottom:8px}
   .blog-card .excerpt{color:var(--muted);font-size:0.9rem;display:-webkit-box;
                       -webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-  .carousel-nav{display:flex;justify-content:center;gap:12px;margin-top:16px}
-  .carousel-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
-                padding:8px 16px;border-radius:10px;color:#e6eef6;cursor:pointer;transition:.2s;border:none}
-  .carousel-btn:hover{background:rgba(255,255,255,0.08)}
 
   /* Blog Page */
   .blog-page{display:none;position:fixed;inset:0;background:var(--bg);z-index:1000;overflow-y:auto}
@@ -107,7 +103,7 @@
       </div>
     </div>
     <div class="photo-container">
-      <div class="photo"><img id="heroPhoto" src="photo.png" alt="Bharath photo"></div>
+      <div class="photo"><img id="heroPhoto" src="Images/photo.png" alt="Bharath photo"></div>
     </div>
   </section>
 
@@ -118,10 +114,6 @@
       <h2>Blogs</h2>
       <div class="carousel-container">
         <div class="carousel" id="blogCarousel"></div>
-      </div>
-      <div class="carousel-nav">
-        <button class="carousel-btn" onclick="scrollCarousel(-1)">← Previous</button>
-        <button class="carousel-btn" onclick="scrollCarousel(1)">Next →</button>
       </div>
     </section>
     
@@ -161,81 +153,51 @@ async function loadSite() {
     const res = await fetch('site-data.json?v=' + Date.now());
     const data = await res.json();
 
-    // ABOUT
     document.getElementById('aboutText').textContent = data.about || '';
-
-    // SKILLS
     const skillsDiv = document.getElementById('skills');
-    skillsDiv.innerHTML = (data.skills || [])
-      .map(skill => `<span class="skill">${skill}</span>`)
-      .join('');
+    skillsDiv.innerHTML = (data.skills || []).map(skill => `<span class="skill">${skill}</span>`).join('');
+    document.getElementById("heroPhoto").src = data.heroPhoto || "Images/photo.png";
 
-    // PROJECTS — add PDF preview (iframe)
+    // Projects (PDF preview)
     const projDiv = document.getElementById('projectsGrid');
-    projDiv.innerHTML = (data.projects || [])
-      .map(p => `
-        <div class="project-item">
-          <h3>${p.title || p.pdfUrl}</h3>
-          ${p.description ? `<p>${p.description}</p>` : ''}
-          ${
-            p.pdfUrl
-              ? `<iframe class="project-frame" src="${p.pdfUrl}#toolbar=0&navpanes=0" 
-                   title="${p.title || 'Project PDF Preview'}"></iframe>`
-              : ''
-          }
-          ${
-            p.pdfUrl
-              ? `<p><a href="${p.pdfUrl}" target="_blank" class="btn">📄 View Full PDF</a></p>`
-              : ''
-          }
-          ${
-            p.link
-              ? `<p><a href="${p.link}" target="_blank" class="btn">🔗 Open Project</a></p>`
-              : ''
-          }
-        </div>
-      `)
-      .join('');
+    projDiv.innerHTML = (data.projects || []).map(p => `
+      <div class="project-item">
+        <h3>${p.title || p.pdfUrl}</h3>
+        ${p.description ? `<p>${p.description}</p>` : ''}
+        ${p.pdfUrl ? `<iframe class="project-frame" src="${p.pdfUrl}#toolbar=0&navpanes=0"></iframe>` : ''}
+        ${p.pdfUrl ? `<p><a href="${p.pdfUrl}" target="_blank" class="btn">📄 View Full PDF</a></p>` : ''}
+      </div>
+    `).join('');
 
-    // BLOGS — show image previews in carousel
+    // Blogs
     const blogs = (data.blogs || [])
-      .filter(b => !/resume/i.test(b.title || "")) // skip “resume” posts
+      .filter(b => !/resume/i.test(b.title || ""))
       .sort((a, b) => new Date(b.date) - new Date(a.date));
-
     const blogDiv = document.getElementById('blogCarousel');
-    blogDiv.innerHTML = blogs
-      .map(blog => `
-        <div class="blog-card" onclick="openBlog(${JSON.stringify(blog).replace(/"/g, '&quot;')})">
-          ${
-            blog.image
-              ? `<div style="height:160px;overflow:hidden;border-radius:10px;margin-bottom:10px">
-                   <img src="${blog.image}" alt="${blog.title}" style="width:100%;height:100%;object-fit:cover;">
-                 </div>`
-              : ''
-          }
-          <h3>${blog.title}</h3>
-          <div class="date">${blog.date || ''}</div>
-          <div class="excerpt">${blog.subheading || ''}</div>
-        </div>
-      `)
-      .join('');
+    blogDiv.innerHTML = blogs.map(blog => `
+      <div class="blog-card" onclick="openBlog(${JSON.stringify(blog).replace(/"/g, '&quot;')})">
+        ${blog.image ? `<div style="height:160px;overflow:hidden;border-radius:10px;margin-bottom:10px">
+          <img src="${blog.image}" alt="${blog.title}" style="width:100%;height:100%;object-fit:cover;">
+        </div>` : ''}
+        <h3>${blog.title}</h3>
+        <div class="date">${blog.date || ''}</div>
+        <div class="excerpt">${blog.subheading || ''}</div>
+      </div>
+    `).join('');
 
-    // RESUME
     document.getElementById('resumeLink').href = data.resumeUrl || 'resume.pdf';
-
-    // CONTACT
     if (data.contactEmail) {
       document.getElementById('contactEmail').textContent = data.contactEmail;
       document.getElementById('contactEmail').href = `mailto:${data.contactEmail}`;
     }
+
   } catch (err) {
     console.error("Error loading JSON:", err);
-    document.getElementById('aboutText').textContent =
-      "Error loading site-data.json. Check file path or syntax.";
+    document.getElementById('aboutText').textContent = "Error loading site-data.json. Check file path or syntax.";
   }
 }
 
-// BLOG VIEW HANDLERS
+// Open/close blog view
 function openBlog(blog) {
   document.getElementById('mainPage').style.display = 'none';
   document.getElementById('blogPage').classList.add('active');
@@ -243,27 +205,27 @@ function openBlog(blog) {
   document.getElementById('blogSubheading').textContent = blog.subheading || '';
   document.getElementById('blogMeta').textContent = blog.date || '';
   document.getElementById('blogBody').innerHTML = `
-    ${blog.image ? `<figure class="blog-image">
-      <img src="${blog.image}" alt="">
-      ${blog.imageCaption ? `<figcaption>${blog.imageCaption}</figcaption>` : ''}
-    </figure>` : ''}
+    ${blog.image ? `<figure class="blog-image"><img src="${blog.image}" alt=""><figcaption>${blog.imageCaption || ''}</figcaption></figure>` : ''}
     <p>${(blog.content || '').replace(/\n/g, '</p><p>')}</p>
   `;
 }
-
 function closeBlog() {
   document.getElementById('blogPage').classList.remove('active');
   document.getElementById('mainPage').style.display = '';
 }
 
-function scrollCarousel(dir) {
-  document.getElementById('blogCarousel').scrollBy({
-    left: dir * 400,
-    behavior: 'smooth'
-  });
+// Auto-scroll leftward carousel
+function autoScrollCarousel() {
+  const carousel = document.getElementById("blogCarousel");
+  let scrollAmount = 0;
+  setInterval(() => {
+    scrollAmount += 1;
+    if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) scrollAmount = 0;
+    carousel.scrollTo({ left: scrollAmount, behavior: "smooth" });
+  }, 50);
 }
 
-loadSite();
+loadSite().then(autoScrollCarousel);
 </script>
 </body>
 </html>
