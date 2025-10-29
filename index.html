@@ -6,345 +6,360 @@
 <title>Bharath Vishal – Portfolio</title>
 <link rel="icon" href="Images/photo.png" />
 <style>
-  :root {
-    --bg: #0f1115;
-    --muted: #9aa3ad;
+  :root{
+    --bg:#0f1115;
+    --muted:#9aa3ad;
+    --glass: rgba(255,255,255,0.05);
+    --card: rgba(255,255,255,0.03);
+    --accent: #9db4c0;
     font-family: Inter, ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   }
-  html, body {
-    margin: 0;
-    background: var(--bg);
-    color: #e6eef6;
-  }
-  .page {
-    max-width: 1100px;
-    margin: 36px auto;
-    padding: 28px;
-  }
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 18px;
-  }
-  .nav {
-    display: flex;
-    gap: 12px;
-  }
-  .nav a {
-    color: var(--muted);
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 12px;
-    transition: 0.18s;
-  }
-  .nav a:hover {
-    background: rgba(255,255,255,0.03);
-    color: #fff;
+
+  html,body{
+    height:100%;
+    margin:0;
+    background:var(--bg);
+    color:#e6eef6;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
   }
 
-  /* Hero Glass Section */
-  .hero {
-    display: grid;
+  .page{max-width:1100px;margin:36px auto;padding:28px;}
+
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,#1abcff22,#7b61ff22);
+         display:flex;align-items:center;justify-content:center;font-weight:700}
+  .brand .title{font-weight:700}
+  .brand .sub{font-size:12px;color:var(--muted)}
+
+  .nav{display:flex;gap:12px;align-items:center}
+  .nav a{color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:12px;transition:.18s}
+  .nav a:hover{background:rgba(255,255,255,0.03);color:#fff}
+  .nav .admin{color:var(--accent)}
+
+  /* HERO — side-by-side glass card */
+  .hero{
+    display:grid;
     grid-template-columns: 1fr 400px;
-    gap: 32px;
-    padding: 28px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 20px;
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  }
-  .photo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .photo {
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid rgba(255,255,255,0.08);
-    background: #1b2430;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-  }
-  .photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .card {
-    background: rgba(255,255,255,0.03);
-    padding: 18px;
-    border-radius: 14px;
-    margin-top: 12px;
-  }
-  .skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .skill {
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: 6px 10px;
-    border-radius: 10px;
-    font-size: 0.9rem;
-    color: var(--muted);
+    gap:32px;
+    padding:28px;
+    background:var(--glass);
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:0 8px 32px rgba(0,0,0,0.4);
+    align-items:center;
   }
 
-  main {
-    margin-top: 18px;
-    display: grid;
-    gap: 22px;
-  }
-  .section {
-    padding: 18px;
-    border-radius: 12px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.03);
-  }
+  /* left column */
+  .hero .intro h1{font-size:1.8rem;margin:0}
+  .hero .intro p { color:var(--muted); margin:10px 0 12px 0; max-width:640px; }
+  .skills-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .skill{background:var(--card);border:1px solid rgba(255,255,255,0.06);padding:6px 12px;border-radius:999px;font-size:0.9rem;color:var(--muted)}
 
-  /* Blog Carousel */
-  .carousel-container {
-    overflow: hidden;
-    margin-top: 12px;
-  }
-  .carousel {
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255,255,255,0.2) transparent;
-  }
-  .carousel::-webkit-scrollbar {
-    height: 6px;
-  }
-  .carousel::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.2);
-    border-radius: 4px;
-  }
+  /* right column: circular photo centered vertically */
+  .photo-container{display:flex;align-items:center;justify-content:center;height:100%}
+  .photo{width:280px;height:280px;border-radius:50%;overflow:hidden;border:4px solid rgba(255,255,255,0.08);
+         background:#1b2430;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
 
-  .blog-card {
-    min-width: 320px;
-    max-width: 320px;
-    background: rgba(255,255,255,0.03);
-    border-radius: 14px;
-    border: 1px solid rgba(255,255,255,0.05);
-    flex-shrink: 0;
-    cursor: pointer;
-    transition: 0.25s ease;
-    overflow: hidden;
-    height: 260px; /* Fixed height */
-    display: flex;
-    flex-direction: column;
-  }
-  .blog-card:hover {
-    background: rgba(255,255,255,0.05);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  }
-  .blog-image {
-    width: 100%;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-  .blog-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .blog-content {
-    flex-grow: 1;
-    padding: 10px 14px 16px 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .blog-card h3 {
-    margin: 6px 0 4px 0;
-    font-size: 1rem;
-    line-height: 1.3;
-  }
-  .blog-card .date {
-    color: var(--muted);
-    font-size: 0.8rem;
-  }
-  .blog-card .excerpt {
-    color: var(--muted);
-    font-size: 0.9rem;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .carousel-nav {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 16px;
-  }
-  .carousel-btn {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 8px 16px;
-    border-radius: 10px;
-    color: #e6eef6;
-    cursor: pointer;
-    transition: 0.2s;
-    border: none;
-  }
-  .carousel-btn:hover {
-    background: rgba(255,255,255,0.08);
-  }
+  /* small card below hero for any extra (kept minimal) */
+  .small-card{background:var(--card);padding:14px;border-radius:12px;margin-top:16px;border:1px solid rgba(255,255,255,0.04)}
 
-  /* Contact */
-  .socials {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 24px;
-  }
-  .socials a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 1.5rem;
-    transition: 0.3s;
-  }
-  .socials a:hover {
-    color: #fff;
-    background: rgba(255,255,255,0.1);
-    transform: scale(1.1);
-  }
+  main{margin-top:22px;display:grid;gap:20px}
 
-  footer {
-    text-align: center;
-    color: var(--muted);
-    margin-top: 40px;
-    font-size: 0.9rem;
+  .section{padding:18px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.03)}
+
+  h2{margin-top:0;margin-bottom:12px}
+
+  /* CAROUSEL (shared styles) */
+  .carousel-rail{position:relative;overflow:hidden}
+  .carousel{display:flex;gap:16px;align-items:stretch;overflow-x:auto;scroll-behavior:smooth;
+            scrollbar-width:none;padding-bottom:8px}
+  .carousel::-webkit-scrollbar{display:none}
+
+  /* BLOG CARD — fixed, balanced height with 16:9 image */
+  .blog-card{
+    width:320px;
+    min-width:320px;
+    max-width:320px;
+    background:var(--card);
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.05);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    cursor:pointer;
+    transition:transform .22s, box-shadow .22s, background .22s;
+    height:260px; /* lock overall height */
+  }
+  .blog-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,0.45);background:rgba(255,255,255,0.06)}
+  .blog-image{width:100%;aspect-ratio:16/9;overflow:hidden;flex-shrink:0}
+  .blog-image img{width:100%;height:100%;object-fit:cover;display:block}
+  .blog-meta{padding:10px 12px;display:flex;flex-direction:column;justify-content:space-between;flex:1}
+  .blog-meta h3{margin:0;font-size:1.02rem;line-height:1.2}
+  .blog-meta .date{color:var(--muted);font-size:0.8rem;margin-top:6px}
+  .blog-meta .excerpt{color:var(--muted);font-size:0.9rem;margin-top:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+  /* PROJECT CARD — similar compact layout; show iframe preview if pdfUrl present */
+  .project-card{
+    width:320px;min-width:320px;max-width:320px;border-radius:12px;background:var(--card);border:1px solid rgba(255,255,255,0.05);
+    overflow:hidden;display:flex;flex-direction:column;height:260px;
+  }
+  .project-thumb{width:100%;aspect-ratio:16/9;overflow:hidden;flex-shrink:0;background:#0b0d0f}
+  .project-thumb iframe{width:100%;height:100%;border:0;display:block}
+  .project-meta{padding:10px 12px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+  .project-meta h3{margin:0;font-size:1rem}
+  .project-meta a{color:var(--accent);text-decoration:none;font-size:0.9rem}
+
+  /* socials */
+  .socials{display:flex;justify-content:center;gap:36px;margin-top:8px}
+  .socials a{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;
+            background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--muted);text-decoration:none;font-size:18px;transition:transform .18s,background .18s}
+  .socials a:hover{transform:scale(1.08);background:rgba(255,255,255,0.1);color:#fff}
+
+  footer{text-align:center;color:var(--muted);margin-top:28px}
+
+  /* small responsive tweaks */
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr; padding:22px}
+    .photo{width:200px;height:200px}
+    .blog-card,.project-card{width:280px;min-width:280px;max-width:280px;height:240px}
   }
 </style>
 </head>
-
 <body>
-<div class="page" id="mainPage">
+<div class="page">
   <header>
-    <div style="display:flex;align-items:center;gap:12px">
-      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,#1abcff22,#7b61ff22);
-      display:flex;align-items:center;justify-content:center;font-weight:700">BV</div>
+    <div class="brand">
+      <div class="logo">BV</div>
       <div>
-        <div style="font-weight:700">Bharath Vishal</div>
-        <div style="font-size:12px;color:var(--muted)">Product Analyst · AI Automation · Design Systems</div>
+        <div class="title">Bharath Vishal</div>
+        <div class="sub">Product Analyst · AI Automation · Design Systems</div>
       </div>
     </div>
+
     <nav class="nav">
-      <a href="#about">About</a>
       <a href="#blogs">Blogs</a>
       <a href="#projects">Projects</a>
       <a href="#resume">Resume</a>
       <a href="#contact">Contact</a>
-      <a class="btn" href="admin.html">Admin</a>
+      <a class="admin" href="admin.html">Admin</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <div>
-      <h1>Hi – I'm Bharath</h1>
-      <p>I bring human simplicity into complex AI systems.</p>
+  <!-- HERO -->
+  <section class="hero" id="heroCard">
+    <div class="intro">
+      <h1>Hi — I'm Bharath</h1>
+      <!-- about paragraph will be injected here from JSON -->
+      <p id="aboutInline" style="margin-bottom:10px;color:var(--muted)"></p>
+
+      <div class="skills-row" id="skillsRow" aria-hidden="false"></div>
     </div>
+
     <div class="photo-container">
-      <div class="photo"><img src="Images/photo.png" alt="Bharath photo"></div>
+      <div class="photo"><img id="heroPhoto" src="Images/photo.png" alt="Bharath photo"></div>
     </div>
   </section>
 
-  <div class="card">
-    <b>Skills</b>
-    <div class="skills" id="skills"></div>
-  </div>
+  <!-- Optional small card (kept minimal) -->
+  <div class="small-card" id="smallCard" style="display:none"></div>
 
   <main>
-    <section class="section" id="about"><h2>About</h2><div id="aboutText"></div></section>
+    <!-- BLOGS -->
     <section class="section" id="blogs">
       <h2>Blogs</h2>
-      <div class="carousel-container">
-        <div class="carousel" id="blogCarousel"></div>
-      </div>
-      <div class="carousel-nav">
-        <button class="carousel-btn" onclick="scrollCarousel(-1)">← Prev</button>
-        <button class="carousel-btn" onclick="scrollCarousel(1)">Next →</button>
+      <div class="carousel-rail">
+        <div class="carousel" id="blogCarousel" aria-live="polite"></div>
       </div>
     </section>
-    <section class="section" id="projects"><h2>Projects</h2><div class="projects-grid" id="projectsGrid"></div></section>
-    <section class="section" id="resume"><h2>Resume</h2><a id="resumeLink" class="btn" href="resume.pdf" target="_blank">📄 View Resume</a></section>
 
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <h2>Projects</h2>
+      <div class="carousel-rail">
+        <div class="carousel" id="projCarousel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section class="section" id="resume">
+      <h2>Resume</h2>
+      <a id="resumeLink" href="resume.pdf" target="_blank" style="color:var(--accent)">📄 View Resume</a>
+    </section>
+
+    <!-- CONTACT -->
     <section class="section" id="contact">
       <h2>Contact</h2>
       <div class="socials">
-        <a href="mailto:bharathvishal.personal@gmail.com">📧</a>
-        <a href="https://github.com/bharath-vishal" target="_blank">💻</a>
-        <a href="https://www.linkedin.com/in/bharath-vishal-m-1414221a2/" target="_blank">🔗</a>
-        <a href="https://instagram.com/bhatty.fx" target="_blank">📸</a>
+        <a href="mailto:bharathvishal.personal@gmail.com" aria-label="Email">✉️</a>
+        <a href="https://github.com/bharath-vishal" target="_blank" aria-label="GitHub">💻</a>
+        <a href="https://www.linkedin.com/in/bharath-vishal-m-1414221a2/" target="_blank" aria-label="LinkedIn">🔗</a>
+        <a href="https://instagram.com/bhatty.fx" target="_blank" aria-label="Instagram">📸</a>
       </div>
     </section>
   </main>
 
-  <footer>© Bharath Vishal – Built for simplicity</footer>
+  <footer>© 2025 Bharath Vishal — Built for simplicity</footer>
 </div>
 
 <script>
+/*
+  Behaviour:
+   - load site-data.json
+   - render hero/about/skills
+   - render blogs and projects into their carousels
+   - duplicate carousel content to allow seamless continuous looping
+   - use requestAnimationFrame scroll loop that moves content right → left (fast)
+   - pause scrolling on hover
+*/
+
+const BLOG_SPEED_PX_PER_FRAME = 2.6;   // fast
+const PROJ_SPEED_PX_PER_FRAME = 2.2;   // slightly different speed
+
+let blogRAF = null, projRAF = null;
+let blogEl, projEl;
+let blogScrollBase = 0, projScrollBase = 0;
+
 async function loadSite() {
-  const res = await fetch('site-data.json?v=' + Date.now());
-  const data = await res.json();
+  try {
+    const res = await fetch('site-data.json?v=' + Date.now());
+    const data = await res.json();
 
-  document.getElementById('aboutText').textContent = data.about || '';
-  document.getElementById('skills').innerHTML = (data.skills || [])
-    .map(skill => `<span class="skill">${skill}</span>`).join('');
+    // Hero about & hero photo
+    document.getElementById('aboutInline').textContent = data.about || '';
+    if (data.heroPhoto) document.getElementById('heroPhoto').src = data.heroPhoto;
 
-  const blogs = (data.blogs || []).sort((a,b)=>new Date(b.date)-new Date(a.date));
-  document.getElementById('blogCarousel').innerHTML = blogs.map(blog => `
-    <div class="blog-card" onclick="openBlog(${JSON.stringify(blog).replace(/"/g,'&quot;')})">
-      ${blog.image ? `<div class="blog-image"><img src="${blog.image}" alt=""></div>` : ''}
-      <div class="blog-content">
-        <h3>${blog.title}</h3>
-        <div class="date">${blog.date || ''}</div>
-        <div class="excerpt">${blog.subheading || ''}</div>
+    // Skills
+    const skillsRow = document.getElementById('skillsRow');
+    skillsRow.innerHTML = (data.skills || []).map(s => `<div class="skill">${escapeHtml(s)}</div>`).join('');
+
+    // Resume
+    document.getElementById('resumeLink').href = data.resumeUrl || 'resume.pdf';
+
+    // Blogs
+    const blogs = (data.blogs || []).filter(b => !/resume/i.test((b.title||''))).sort((a,b)=>new Date(b.date)-new Date(a.date));
+    blogEl = document.getElementById('blogCarousel');
+    blogEl.innerHTML = blogs.map(b => blogCardHtml(b)).join('');
+    // duplicate content for seamless loop
+    blogEl.innerHTML += blogEl.innerHTML;
+    // reset scroll
+    blogEl.scrollLeft = 0;
+
+    // Projects
+    const projs = (data.projects || []);
+    projEl = document.getElementById('projCarousel');
+    projEl.innerHTML = projs.map(p => projectCardHtml(p)).join('');
+    projEl.innerHTML += projEl.innerHTML;
+    projEl.scrollLeft = 0;
+
+    // start continuous scroll loops
+    startContinuousLoop(blogEl, BLOG_SPEED_PX_PER_FRAME, 'blog');
+    startContinuousLoop(projEl, PROJ_SPEED_PX_PER_FRAME, 'proj');
+
+  } catch (err) {
+    console.error('Error loading site-data.json', err);
+    document.getElementById('aboutInline').textContent = 'Error loading content.';
+  }
+}
+
+function blogCardHtml(b){
+  const img = b.image ? `<div class="blog-image"><img src="${escapeAttr(b.image)}" alt="${escapeAttr(b.title||'')}" /></div>` : '';
+  const title = escapeHtml(b.title||'Untitled');
+  const sub = escapeHtml(b.subheading||'');
+  const date = escapeHtml(b.date||'');
+  return `<div class="blog-card" role="article" tabindex="0" onclick='openBlog(${JSON.stringify(b).replace(/'/g,"\\'")})'>
+    ${img}
+    <div class="blog-meta">
+      <div>
+        <h3>${title}</h3>
+        <div class="date">${date}</div>
       </div>
-    </div>`).join('');
-
-  document.getElementById('projectsGrid').innerHTML = (data.projects || [])
-    .map(p => `<div class="project-item"><h3>${p.title}</h3>
-      ${p.pdfUrl ? `<iframe class="project-frame" src="${p.pdfUrl}#toolbar=0&navpanes=0"></iframe>` : ''}
-      ${p.pdfUrl ? `<p><a href="${p.pdfUrl}" target="_blank" class="btn">📄 View Full PDF</a></p>` : ''}
-    </div>`).join('');
+      <div class="excerpt">${sub}</div>
+    </div>
+  </div>`;
 }
 
+function projectCardHtml(p){
+  const title = escapeHtml(p.title||p.pdfUrl||'Project');
+  const pdf = p.pdfUrl || '';
+  const thumb = p.thumbnail || ''; // optional thumbnail field
+  const imgBlock = thumb ? `<div class="project-thumb"><img src="${escapeAttr(thumb)}" style="width:100%;height:100%;object-fit:cover;"></div>` :
+                   (pdf ? `<div class="project-thumb"><iframe src="${escapeAttr(pdf)}#toolbar=0&navpanes=0" loading="lazy"></iframe></div>` : `<div class="project-thumb"></div>`);
+  const link = pdf ? `<a href="${escapeAttr(pdf)}" target="_blank">Open PDF</a>` : (p.link? `<a href="${escapeAttr(p.link)}" target="_blank">Open</a>` : '');
+  return `<div class="project-card" role="article">
+    ${imgBlock}
+    <div class="project-meta">
+      <h3>${title}</h3>
+      <div>${link}</div>
+    </div>
+  </div>`;
+}
+
+/* continuous loop engine using requestAnimationFrame
+   - duplicates content beforehand (we already did)
+   - when scrollLeft >= halfScrollWidth, reset to 0 to loop seamlessly
+   - moves content by speed px/frame (positive moves content right->left)
+*/
+function startContinuousLoop(el, speed, tag){
+  // cancel previous if exists
+  if(tag === 'blog' && blogRAF){ cancelAnimationFrame(blogRAF); blogRAF = null; }
+  if(tag === 'proj' && projRAF){ cancelAnimationFrame(projRAF); projRAF = null; }
+
+  // compute half-width after a tiny delay so images can layout
+  requestAnimationFrame(() => {
+    const half = el.scrollWidth / 2;
+    let step = function(){
+      // pause when hovering
+      if (!el.matches(':hover')){
+        el.scrollLeft += speed;
+        if (el.scrollLeft >= half) {
+          // jump back
+          el.scrollLeft = el.scrollLeft - half;
+        }
+      }
+      if(tag === 'blog') blogRAF = requestAnimationFrame(step);
+      else projRAF = requestAnimationFrame(step);
+    };
+    step();
+  });
+}
+
+// handle opening blog — show a simple modal-like view
 function openBlog(blog){
-  document.body.innerHTML = `<div style="max-width:800px;margin:60px auto;padding:28px">
-    <h1>${blog.title}</h1><h3>${blog.subheading}</h3><p><em>${blog.date}</em></p>
-    ${blog.image ? `<img src="${blog.image}" style="width:100%;border-radius:12px;">` : ''}
-    <p>${(blog.content||'').replace(/\n/g,'</p><p>')}</p>
-    <button onclick="location.reload()" class="carousel-btn">← Back</button></div>`;
+  try{
+    const overlay = document.createElement('div');
+    overlay.style.position='fixed'; overlay.style.inset=0; overlay.style.background='rgba(11,13,15,0.98)';
+    overlay.style.overflow='auto'; overlay.style.zIndex=9999; overlay.style.padding='40px';
+    const safeTitle = escapeHtml(blog.title||'');
+    const safeSub = escapeHtml(blog.subheading||'');
+    const safeDate = escapeHtml(blog.date||'');
+    const imgHtml = blog.image? `<div style="max-width:900px;margin:18px auto"><img src="${escapeAttr(blog.image)}" style="width:100%;border-radius:12px;display:block" /></div>` :'';
+    overlay.innerHTML = `<div style="max-width:900px;margin:0 auto;color:#e6eef6;font-family:inherit">
+      <button id="closeBlogBtn" style="background:transparent;border:1px solid rgba(255,255,255,0.08);color:#e6eef6;padding:8px 12px;border-radius:10px;cursor:pointer">Close</button>
+      <h1 style="margin-top:18px">${safeTitle}</h1>
+      <h3 style="color:var(--muted);margin-top:6px">${safeSub}</h3>
+      <p style="color:var(--muted)"><em>${safeDate}</em></p>
+      ${imgHtml}
+      <div style="color:#dbe9f2;line-height:1.8">${(blog.content||'').split('\n').map(escapeHtml).map(t=>`<p>${t}</p>`).join('')}</div>
+    </div>`;
+    document.body.appendChild(overlay);
+    document.getElementById('closeBlogBtn').onclick = ()=> { document.body.removeChild(overlay); };
+  }catch(e){ console.error(e); }
 }
 
-function scrollCarousel(dir){
-  document.getElementById('blogCarousel').scrollBy({ left: dir * 700, behavior: 'smooth' });
-}
+/* small helpers */
+function escapeHtml(s){ if(!s && s!==0) return ''; return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+function escapeAttr(s){ if(!s && s!==0) return ''; return String(s).replaceAll('"','&quot;').replaceAll("'","&#39;"); }
 
+/* start */
 loadSite();
+
+/* cleanup on unload */
+window.addEventListener('beforeunload', ()=>{ if(blogRAF) cancelAnimationFrame(blogRAF); if(projRAF) cancelAnimationFrame(projRAF); });
 </script>
 </body>
 </html>
