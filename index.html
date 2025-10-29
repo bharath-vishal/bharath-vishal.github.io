@@ -33,9 +33,8 @@
 
   /* Blog Carousel */
   .carousel-container{position:relative;overflow:hidden;margin-top:12px}
-  .carousel{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.2) transparent}
-  .carousel::-webkit-scrollbar{height:8px}
-  .carousel::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:4px}
+  .carousel{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;}
+  .carousel::-webkit-scrollbar{display:none;}
   .blog-card{min-width:320px;background:rgba(255,255,255,0.03);padding:18px;border-radius:14px;
              cursor:pointer;border:1px solid rgba(255,255,255,0.05);transition:.3s;flex-shrink:0}
   .blog-card:hover{background:rgba(255,255,255,0.05);transform:translateY(-4px);
@@ -44,6 +43,23 @@
   .blog-card .date{color:var(--muted);font-size:0.85rem;margin-bottom:8px}
   .blog-card .excerpt{color:var(--muted);font-size:0.9rem;display:-webkit-box;
                       -webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+  /* 16:9 Image Ratio */
+  .blog-img-wrap{
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 ratio */
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  .blog-img-wrap img{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   /* Blog Page */
   .blog-page{display:none;position:fixed;inset:0;background:var(--bg);z-index:1000;overflow-y:auto}
@@ -158,7 +174,7 @@ async function loadSite() {
     skillsDiv.innerHTML = (data.skills || []).map(skill => `<span class="skill">${skill}</span>`).join('');
     document.getElementById("heroPhoto").src = data.heroPhoto || "Images/photo.png";
 
-    // Projects (PDF preview)
+    // Projects
     const projDiv = document.getElementById('projectsGrid');
     projDiv.innerHTML = (data.projects || []).map(p => `
       <div class="project-item">
@@ -176,9 +192,7 @@ async function loadSite() {
     const blogDiv = document.getElementById('blogCarousel');
     blogDiv.innerHTML = blogs.map(blog => `
       <div class="blog-card" onclick="openBlog(${JSON.stringify(blog).replace(/"/g, '&quot;')})">
-        ${blog.image ? `<div style="height:160px;overflow:hidden;border-radius:10px;margin-bottom:10px">
-          <img src="${blog.image}" alt="${blog.title}" style="width:100%;height:100%;object-fit:cover;">
-        </div>` : ''}
+        ${blog.image ? `<div class="blog-img-wrap"><img src="${blog.image}" alt="${blog.title}"></div>` : ''}
         <h3>${blog.title}</h3>
         <div class="date">${blog.date || ''}</div>
         <div class="excerpt">${blog.subheading || ''}</div>
@@ -191,13 +205,14 @@ async function loadSite() {
       document.getElementById('contactEmail').href = `mailto:${data.contactEmail}`;
     }
 
+    autoScrollCarousel(); // start scrolling
   } catch (err) {
     console.error("Error loading JSON:", err);
-    document.getElementById('aboutText').textContent = "Error loading site-data.json. Check file path or syntax.";
+    document.getElementById('aboutText').textContent = "Error loading site-data.json.";
   }
 }
 
-// Open/close blog view
+// BLOG VIEW HANDLERS
 function openBlog(blog) {
   document.getElementById('mainPage').style.display = 'none';
   document.getElementById('blogPage').classList.add('active');
@@ -205,27 +220,31 @@ function openBlog(blog) {
   document.getElementById('blogSubheading').textContent = blog.subheading || '';
   document.getElementById('blogMeta').textContent = blog.date || '';
   document.getElementById('blogBody').innerHTML = `
-    ${blog.image ? `<figure class="blog-image"><img src="${blog.image}" alt=""><figcaption>${blog.imageCaption || ''}</figcaption></figure>` : ''}
+    ${blog.image ? `<figure class="blog-image">
+      <img src="${blog.image}" alt="">
+      ${blog.imageCaption ? `<figcaption>${blog.imageCaption}</figcaption>` : ''}
+    </figure>` : ''}
     <p>${(blog.content || '').replace(/\n/g, '</p><p>')}</p>
   `;
 }
+
 function closeBlog() {
   document.getElementById('blogPage').classList.remove('active');
   document.getElementById('mainPage').style.display = '';
 }
 
-// Auto-scroll leftward carousel
+// Auto-scroll carousel (2× faster)
 function autoScrollCarousel() {
   const carousel = document.getElementById("blogCarousel");
   let scrollAmount = 0;
   setInterval(() => {
-    scrollAmount += 1;
+    scrollAmount += 2; // ← double the speed
     if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) scrollAmount = 0;
     carousel.scrollTo({ left: scrollAmount, behavior: "smooth" });
   }, 50);
 }
 
-loadSite().then(autoScrollCarousel);
+loadSite();
 </script>
 </body>
 </html>
