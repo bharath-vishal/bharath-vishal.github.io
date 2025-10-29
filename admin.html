@@ -102,8 +102,21 @@ function login(){
 }
 
 async function loadExisting(){
-  try{const r=await fetch('site-data.json');if(r.ok){data=await r.json();}}
-  catch(e){console.log(e);}
+  try{
+    const r=await fetch('site-data.json');
+    if(r.ok){
+      const loaded=await r.json();
+      data=loaded;
+      // Ensure arrays exist
+      if(!data.education)data.education=[];
+      if(!data.experience)data.experience=[];
+      if(!data.projects)data.projects=[];
+      if(!data.blogs)data.blogs=[];
+      if(!data.certifications)data.certifications=[];
+    }
+  }catch(e){
+    console.log('No existing data, starting fresh',e);
+  }
   render();
 }
 
@@ -112,30 +125,38 @@ function render(){
   document.getElementById('about').value=data.about||"";
   document.getElementById('skills').value=(data.skills||[]).join(', ');
   document.getElementById('resume').value=data.resumeUrl||"resume.pdf";
-  renderEducation();renderExperience();renderProjects();renderBlogs();renderCerts();
+  renderEducation();
+  renderExperience();
+  renderProjects();
+  renderBlogs();
+  renderCerts();
 }
 
 /* ---------- EDUCATION ---------- */
 function renderEducation(){
-  const c=document.getElementById('education');c.innerHTML='';
-  (data.education||[]).forEach((edu,i)=>{
-    const d=document.createElement('div');d.className='item';
+  const c=document.getElementById('education');
+  c.innerHTML='';
+  if(!data.education)data.education=[];
+  data.education.forEach((edu,i)=>{
+    const d=document.createElement('div');
+    d.className='item';
     d.innerHTML=`
       <div class="flex"><b>${edu.degree||'Education '+(i+1)}</b>
         <div>
-          <button class="ghost" onclick="moveItem(data.education,${i},-1,renderEducation)">↑</button>
-          <button class="ghost" onclick="moveItem(data.education,${i},1,renderEducation)">↓</button>
-          <button class="danger" onclick="delItem(data.education,${i},renderEducation)">✕</button>
+          <button class="ghost" onclick="moveItem('education',${i},-1)">↑</button>
+          <button class="ghost" onclick="moveItem('education',${i},1)">↓</button>
+          <button class="danger" onclick="delItem('education',${i})">✕</button>
         </div>
       </div>
-      <label>Degree</label><input value="${edu.degree||''}" onchange="data.education[${i}].degree=this.value">
-      <label>Institution</label><input value="${edu.institution||''}" onchange="data.education[${i}].institution=this.value">
-      <label>Year (e.g., 2015-2019 or 2019)</label><input value="${edu.year||''}" onchange="data.education[${i}].year=this.value">
-      <label>Description (optional)</label><textarea onchange="data.education[${i}].description=this.value">${edu.description||''}</textarea>
+      <label>Degree</label><input value="${edu.degree||''}" onchange="updateField('education',${i},'degree',this.value)">
+      <label>Institution</label><input value="${edu.institution||''}" onchange="updateField('education',${i},'institution',this.value)">
+      <label>Year (e.g., 2015-2019 or 2019)</label><input value="${edu.year||''}" onchange="updateField('education',${i},'year',this.value)">
+      <label>Description (optional)</label><textarea onchange="updateField('education',${i},'description',this.value)">${edu.description||''}</textarea>
     `;
     c.appendChild(d);
   });
 }
+
 function addEducation(){
   if(!data.education)data.education=[];
   data.education.push({degree:"Degree Name",institution:"University Name",year:"2015-2019",description:""});
@@ -144,25 +165,29 @@ function addEducation(){
 
 /* ---------- WORK EXPERIENCE ---------- */
 function renderExperience(){
-  const c=document.getElementById('experience');c.innerHTML='';
-  (data.experience||[]).forEach((exp,i)=>{
-    const d=document.createElement('div');d.className='item';
+  const c=document.getElementById('experience');
+  c.innerHTML='';
+  if(!data.experience)data.experience=[];
+  data.experience.forEach((exp,i)=>{
+    const d=document.createElement('div');
+    d.className='item';
     d.innerHTML=`
       <div class="flex"><b>${exp.title||'Experience '+(i+1)}</b>
         <div>
-          <button class="ghost" onclick="moveItem(data.experience,${i},-1,renderExperience)">↑</button>
-          <button class="ghost" onclick="moveItem(data.experience,${i},1,renderExperience)">↓</button>
-          <button class="danger" onclick="delItem(data.experience,${i},renderExperience)">✕</button>
+          <button class="ghost" onclick="moveItem('experience',${i},-1)">↑</button>
+          <button class="ghost" onclick="moveItem('experience',${i},1)">↓</button>
+          <button class="danger" onclick="delItem('experience',${i})">✕</button>
         </div>
       </div>
-      <label>Job Title</label><input value="${exp.title||''}" onchange="data.experience[${i}].title=this.value">
-      <label>Company</label><input value="${exp.company||''}" onchange="data.experience[${i}].company=this.value">
-      <label>Duration (e.g., Jan 2020 - Present)</label><input value="${exp.duration||''}" onchange="data.experience[${i}].duration=this.value">
-      <label>Description</label><textarea onchange="data.experience[${i}].description=this.value">${exp.description||''}</textarea>
+      <label>Job Title</label><input value="${exp.title||''}" onchange="updateField('experience',${i},'title',this.value)">
+      <label>Company</label><input value="${exp.company||''}" onchange="updateField('experience',${i},'company',this.value)">
+      <label>Duration (e.g., Jan 2020 - Present)</label><input value="${exp.duration||''}" onchange="updateField('experience',${i},'duration',this.value)">
+      <label>Description</label><textarea onchange="updateField('experience',${i},'description',this.value)">${exp.description||''}</textarea>
     `;
     c.appendChild(d);
   });
 }
+
 function addExperience(){
   if(!data.experience)data.experience=[];
   data.experience.push({title:"Job Title",company:"Company Name",duration:"Jan 2020 - Present",description:""});
@@ -171,23 +196,27 @@ function addExperience(){
 
 /* ---------- PROJECTS ---------- */
 function renderProjects(){
-  const c=document.getElementById('projects');c.innerHTML='';
-  (data.projects||[]).forEach((p,i)=>{
-    const d=document.createElement('div');d.className='item';
+  const c=document.getElementById('projects');
+  c.innerHTML='';
+  if(!data.projects)data.projects=[];
+  data.projects.forEach((p,i)=>{
+    const d=document.createElement('div');
+    d.className='item';
     d.innerHTML=`
       <div class="flex"><b>${p.title||p.pdfUrl}</b>
         <div>
-          <button class="ghost" onclick="moveItem(data.projects,${i},-1,renderProjects)">↑</button>
-          <button class="ghost" onclick="moveItem(data.projects,${i},1,renderProjects)">↓</button>
-          <button class="danger" onclick="delItem(data.projects,${i},renderProjects)">✕</button>
+          <button class="ghost" onclick="moveItem('projects',${i},-1)">↑</button>
+          <button class="ghost" onclick="moveItem('projects',${i},1)">↓</button>
+          <button class="danger" onclick="delItem('projects',${i})">✕</button>
         </div>
       </div>
-      <label>PDF URL</label><input value="${p.pdfUrl||''}" onchange="data.projects[${i}].pdfUrl=this.value">
-      <label>Title</label><input value="${p.title||''}" onchange="data.projects[${i}].title=this.value">
+      <label>PDF URL</label><input value="${p.pdfUrl||''}" onchange="updateField('projects',${i},'pdfUrl',this.value)">
+      <label>Title</label><input value="${p.title||''}" onchange="updateField('projects',${i},'title',this.value)">
     `;
     c.appendChild(d);
   });
 }
+
 function addProject(){
   if(!data.projects)data.projects=[];
   data.projects.push({title:"New Project",pdfUrl:"project.pdf"});
@@ -196,28 +225,32 @@ function addProject(){
 
 /* ---------- BLOGS ---------- */
 function renderBlogs(){
-  const c=document.getElementById('blogs');c.innerHTML='';
-  (data.blogs||[]).forEach((b,i)=>{
-    const d=document.createElement('div');d.className='item';
+  const c=document.getElementById('blogs');
+  c.innerHTML='';
+  if(!data.blogs)data.blogs=[];
+  data.blogs.forEach((b,i)=>{
+    const d=document.createElement('div');
+    d.className='item';
     d.innerHTML=`
       <div class="flex"><b>${b.title||'Blog '+(i+1)}</b>
         <div>
-          <button class="ghost" onclick="moveItem(data.blogs,${i},-1,renderBlogs)">↑</button>
-          <button class="ghost" onclick="moveItem(data.blogs,${i},1,renderBlogs)">↓</button>
-          <button class="danger" onclick="delItem(data.blogs,${i},renderBlogs)">✕</button>
+          <button class="ghost" onclick="moveItem('blogs',${i},-1)">↑</button>
+          <button class="ghost" onclick="moveItem('blogs',${i},1)">↓</button>
+          <button class="danger" onclick="delItem('blogs',${i})">✕</button>
         </div>
       </div>
-      <label>Headline</label><input value="${b.title||''}" onchange="data.blogs[${i}].title=this.value">
-      <label>Subheading</label><input value="${b.subheading||''}" onchange="data.blogs[${i}].subheading=this.value">
-      <label>Date</label><input value="${b.date||today()}" onchange="data.blogs[${i}].date=this.value">
-      <label>Image URL</label><input value="${b.image||''}" onchange="data.blogs[${i}].image=this.value">
-      <label>Image Caption</label><input value="${b.imageCaption||''}" onchange="data.blogs[${i}].imageCaption=this.value">
-      <label>Blog Text</label><textarea onchange="data.blogs[${i}].content=this.value">${b.content||''}</textarea>
+      <label>Headline</label><input value="${b.title||''}" onchange="updateField('blogs',${i},'title',this.value)">
+      <label>Subheading</label><input value="${b.subheading||''}" onchange="updateField('blogs',${i},'subheading',this.value)">
+      <label>Date</label><input value="${b.date||today()}" onchange="updateField('blogs',${i},'date',this.value)">
+      <label>Image URL</label><input value="${b.image||''}" onchange="updateField('blogs',${i},'image',this.value);renderBlogs()">
+      <label>Image Caption</label><input value="${b.imageCaption||''}" onchange="updateField('blogs',${i},'imageCaption',this.value)">
+      <label>Blog Text</label><textarea onchange="updateField('blogs',${i},'content',this.value)">${b.content||''}</textarea>
       ${b.image?`<img src="${b.image}" class="img-preview">`:''}
     `;
     c.appendChild(d);
   });
 }
+
 function addBlog(){
   if(!data.blogs)data.blogs=[];
   data.blogs.unshift({title:"New Blog",subheading:"",date:today(),image:"",imageCaption:"",content:""});
@@ -226,24 +259,28 @@ function addBlog(){
 
 /* ---------- CERTIFICATIONS ---------- */
 function renderCerts(){
-  const c=document.getElementById('certs');c.innerHTML='';
-  (data.certifications||[]).forEach((x,i)=>{
-    const d=document.createElement('div');d.className='item';
+  const c=document.getElementById('certs');
+  c.innerHTML='';
+  if(!data.certifications)data.certifications=[];
+  data.certifications.forEach((x,i)=>{
+    const d=document.createElement('div');
+    d.className='item';
     d.innerHTML=`
       <div class="flex"><b>${x.title||'Cert '+(i+1)}</b>
         <div>
-          <button class="ghost" onclick="moveItem(data.certifications,${i},-1,renderCerts)">↑</button>
-          <button class="ghost" onclick="moveItem(data.certifications,${i},1,renderCerts)">↓</button>
-          <button class="danger" onclick="delItem(data.certifications,${i},renderCerts)">✕</button>
+          <button class="ghost" onclick="moveItem('certifications',${i},-1)">↑</button>
+          <button class="ghost" onclick="moveItem('certifications',${i},1)">↓</button>
+          <button class="danger" onclick="delItem('certifications',${i})">✕</button>
         </div>
       </div>
-      <label>Title</label><input value="${x.title||''}" onchange="data.certifications[${i}].title=this.value">
-      <label>Issuer</label><input value="${x.issuer||''}" onchange="data.certifications[${i}].issuer=this.value">
-      <label>Year</label><input value="${x.year||''}" onchange="data.certifications[${i}].year=this.value">
+      <label>Title</label><input value="${x.title||''}" onchange="updateField('certifications',${i},'title',this.value)">
+      <label>Issuer</label><input value="${x.issuer||''}" onchange="updateField('certifications',${i},'issuer',this.value)">
+      <label>Year</label><input value="${x.year||''}" onchange="updateField('certifications',${i},'year',this.value)">
     `;
     c.appendChild(d);
   });
 }
+
 function addCert(){
   if(!data.certifications)data.certifications=[];
   data.certifications.push({title:"New Certification",issuer:"",year:""});
@@ -251,9 +288,36 @@ function addCert(){
 }
 
 /* ---------- UTIL ---------- */
-function moveItem(arr,i,dir,reRender){const j=i+dir;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];reRender();}
-function delItem(arr,i,reRender){if(confirm('Delete this item?')){arr.splice(i,1);reRender();}}
-function today(){return new Date().toISOString().split('T')[0];}
+function updateField(section,index,field,value){
+  data[section][index][field]=value;
+}
+
+function moveItem(section,i,dir){
+  const arr=data[section];
+  const j=i+dir;
+  if(j<0||j>=arr.length)return;
+  [arr[i],arr[j]]=[arr[j],arr[i]];
+  if(section==='education')renderEducation();
+  if(section==='experience')renderExperience();
+  if(section==='projects')renderProjects();
+  if(section==='blogs')renderBlogs();
+  if(section==='certifications')renderCerts();
+}
+
+function delItem(section,i){
+  if(confirm('Delete this item?')){
+    data[section].splice(i,1);
+    if(section==='education')renderEducation();
+    if(section==='experience')renderExperience();
+    if(section==='projects')renderProjects();
+    if(section==='blogs')renderBlogs();
+    if(section==='certifications')renderCerts();
+  }
+}
+
+function today(){
+  return new Date().toISOString().split('T')[0];
+}
 
 /* ---------- SAVE ---------- */
 function saveJSON(){
@@ -261,7 +325,12 @@ function saveJSON(){
   data.skills=document.getElementById('skills').value.split(',').map(x=>x.trim()).filter(Boolean);
   data.resumeUrl=document.getElementById('resume').value||'resume.pdf';
   const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='site-data.json';a.click();
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='site-data.json';
+  a.click();
+  document.getElementById('status').textContent='✓ Downloaded site-data.json';
+  setTimeout(()=>document.getElementById('status').textContent='',3000);
 }
 
 /* ---------- GITHUB SCAN ---------- */
@@ -276,7 +345,9 @@ async function scanProjects(){
     pdfs.forEach(p=>{if(!existing.includes(p.pdfUrl))data.projects.push(p);});
     renderProjects();
     document.getElementById('status').textContent=`Found ${pdfs.length} PDFs.`;
-  }catch(e){document.getElementById('status').textContent='Could not fetch GitHub files.';}
+  }catch(e){
+    document.getElementById('status').textContent='Could not fetch GitHub files.';
+  }
 }
 
 /* ---------- Upload Helper ---------- */
