@@ -45,7 +45,7 @@
     color: #fff;
   }
 
-  /* Glass Hero Card */
+  /* Glass Hero */
   .hero {
     display: grid;
     grid-template-columns: 1fr 400px;
@@ -57,7 +57,6 @@
     -webkit-backdrop-filter: blur(18px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   }
-
   .photo-container {
     display: flex;
     align-items: center;
@@ -127,35 +126,61 @@
     scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
   }
   .carousel::-webkit-scrollbar {
-    height: 8px;
+    height: 6px;
   }
   .carousel::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 4px;
   }
+
   .blog-card {
     min-width: 320px;
     background: rgba(255, 255, 255, 0.03);
-    padding: 18px;
-    border-radius: 14px;
+    padding: 12px 14px;
+    border-radius: 12px;
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: 0.3s;
+    transition: 0.25s ease;
     flex-shrink: 0;
   }
   .blog-card:hover {
     background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   }
+
+  .blog-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
   .blog-card h3 {
-    margin: 10px 0 6px 0;
-    font-size: 1.1rem;
+    margin: 6px 0 4px 0;
+    font-size: 1.05rem;
+    line-height: 1.3;
   }
   .blog-card .date {
     color: var(--muted);
-    font-size: 0.85rem;
-    margin-bottom: 8px;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+  }
+  .blog-card .excerpt {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .carousel-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
   }
   .carousel-btn {
     background: rgba(255, 255, 255, 0.05);
@@ -170,16 +195,11 @@
   .carousel-btn:hover {
     background: rgba(255, 255, 255, 0.08);
   }
-  .carousel-nav {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 16px;
-  }
 
+  /* Projects */
   .project-frame {
     width: 100%;
-    height: 480px;
+    height: 380px;
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.03);
@@ -244,7 +264,7 @@
       display:flex;align-items:center;justify-content:center;font-weight:700">BV</div>
       <div>
         <div style="font-weight:700">Bharath Vishal</div>
-        <div style="font-size:12px;color:var(--muted)">Product Analyst · AI automation · Design systems</div>
+        <div style="font-size:12px;color:var(--muted)">Product Analyst · AI Automation · Design Systems</div>
       </div>
     </div>
     <nav class="nav">
@@ -259,12 +279,12 @@
 
   <section class="hero">
     <div>
-      <h1 id="heroName">Hi – I'm Bharath</h1>
-      <p id="heroTag">I bring human simplicity into complex AI systems.</p>
+      <h1>Hi – I'm Bharath</h1>
+      <p>I bring human simplicity into complex AI systems.</p>
     </div>
     <div class="photo-container">
       <div class="photo">
-        <img id="heroPhoto" src="Images/photo.png" alt="Bharath photo">
+        <img src="Images/photo.png" alt="Bharath photo">
       </div>
     </div>
   </section>
@@ -292,18 +312,10 @@
     <section class="section" id="contact">
       <h2>Contact</h2>
       <div class="socials">
-        <a href="mailto:bharathvishal.personal@gmail.com" title="Email">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"/><polyline points="22,6 12,13 2,6"/></svg>
-        </a>
-        <a href="https://github.com/bharath-vishal" target="_blank" title="GitHub">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1C5.4 1 0 6.4 0 13c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.5-4-1.5-.6-1.5-1.5-1.9-1.5-1.9-1.2-.8.1-.8.1-.8 1.3.1 2 .9 2 .9 1.1 2 2.9 1.4 3.6 1.1.1-.8.4-1.4.7-1.7-2.7-.3-5.6-1.4-5.6-6.3 0-1.4.5-2.6 1.3-3.5-.1-.3-.6-1.7.1-3.6 0 0 1-.3 3.5 1.3A12.1 12.1 0 0112 5.8c1 0 2 .1 3 .3 2.5-1.6 3.5-1.3 3.5-1.3.7 1.9.2 3.3.1 3.6.8.9 1.3 2.1 1.3 3.5 0 4.9-2.9 6-5.6 6.3.5.4.9 1.1.9 2.2v3.2c0 .3.2.7.8.6A12 12 0 0024 13c0-6.6-5.4-12-12-12z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/bharath-vishal-m-1414221a2/" target="_blank" title="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://instagram.com/bhatty.fx" target="_blank" title="Instagram">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="0.5"/></svg>
-        </a>
+        <a href="mailto:bharathvishal.personal@gmail.com" title="Email">📧</a>
+        <a href="https://github.com/bharath-vishal" target="_blank" title="GitHub">💻</a>
+        <a href="https://www.linkedin.com/in/bharath-vishal-m-1414221a2/" target="_blank" title="LinkedIn">🔗</a>
+        <a href="https://instagram.com/bhatty.fx" target="_blank" title="Instagram">📸</a>
       </div>
     </section>
   </main>
@@ -317,9 +329,9 @@ async function loadSite() {
     const data = await res.json();
 
     document.getElementById('aboutText').textContent = data.about || '';
-
-    const skillsDiv = document.getElementById('skills');
-    skillsDiv.innerHTML = (data.skills || []).map(skill => `<span class="skill">${skill}</span>`).join('');
+    document.getElementById('skills').innerHTML = (data.skills || [])
+      .map(skill => `<span class="skill">${skill}</span>`)
+      .join('');
 
     const projDiv = document.getElementById('projectsGrid');
     projDiv.innerHTML = (data.projects || []).map(p => `
@@ -333,13 +345,11 @@ async function loadSite() {
     const blogDiv = document.getElementById('blogCarousel');
     blogDiv.innerHTML = blogs.map(blog => `
       <div class="blog-card" onclick="openBlog(${JSON.stringify(blog).replace(/"/g, '&quot;')})">
-        ${blog.image ? `<div style="aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin-bottom:10px"><img src="${blog.image}" alt="${blog.title}" style="width:100%;height:100%;object-fit:cover;"></div>` : ''}
+        ${blog.image ? `<img src="${blog.image}" alt="${blog.title}">` : ''}
         <h3>${blog.title}</h3>
         <div class="date">${blog.date || ''}</div>
         <div class="excerpt">${blog.subheading || ''}</div>
       </div>`).join('');
-
-    document.getElementById('resumeLink').href = data.resumeUrl || 'resume.pdf';
   } catch (err) {
     console.error("Error loading JSON:", err);
     document.getElementById('aboutText').textContent = "Error loading site-data.json.";
@@ -347,18 +357,15 @@ async function loadSite() {
 }
 
 function openBlog(blog) {
-  document.getElementById('mainPage').style.display = 'none';
-  const bp = document.createElement('div');
-  bp.innerHTML = `
+  document.body.innerHTML = `
     <div style="max-width:800px;margin:60px auto;padding:28px">
       <h1>${blog.title}</h1>
       <h3>${blog.subheading}</h3>
       <p><em>${blog.date}</em></p>
-      ${blog.image ? `<figure><img src="${blog.image}" style="max-width:100%;border-radius:12px;"><figcaption>${blog.imageCaption || ''}</figcaption></figure>` : ''}
+      ${blog.image ? `<img src="${blog.image}" style="width:100%;border-radius:12px;">` : ''}
       <p>${(blog.content || '').replace(/\n/g, '</p><p>')}</p>
       <button onclick="location.reload()" class="carousel-btn">← Back</button>
     </div>`;
-  document.body.appendChild(bp);
 }
 
 function scrollCarousel(dir) {
