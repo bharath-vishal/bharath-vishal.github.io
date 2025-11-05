@@ -14,29 +14,46 @@
   }
   html,body{height:100%;margin:0;background:var(--bg);color:#e6eef6;}
   .page{max-width:1100px;margin:36px auto;padding:28px;}
-  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-  .nav{display:flex;gap:12px}
-  .nav a{color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:12px;transition:.18s}
+  
+  /* Header - Responsive */
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:16px;flex-wrap:wrap}
+  .header-left{display:flex;align-items:center;gap:12px}
+  .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,#1abcff22,#7b61ff22);
+        display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+  .nav{display:flex;gap:12px;flex-wrap:wrap}
+  .nav a{color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:12px;transition:.18s;white-space:nowrap}
   .nav a:hover{background:rgba(255,255,255,0.03);color:#fff}
-  .hero{display:grid;grid-template-columns:1fr 400px;gap:32px;padding:28px;background:var(--glass);
+  
+  /* Hero - Responsive Grid */
+  .hero{display:grid;grid-template-columns:1fr;gap:32px;padding:28px;background:var(--glass);
         border-radius:20px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-  .photo-container{display:flex;flex-direction:column;align-items:center;gap:20px}
+  .photo-container{display:flex;flex-direction:column;align-items:center;gap:20px;order:1}
+  .hero-content{order:2}
   .photo{width:280px;height:280px;border-radius:50%;overflow:hidden;
          border:4px solid rgba(255,255,255,0.08);background:#1b2430;display:flex;align-items:center;
-         justify-content:center;box-shadow:0 12px 40px rgba(0,0,0,0.4);position:relative}
+         justify-content:center;box-shadow:0 12px 40px rgba(0,0,0,0.4)}
   .photo img{width:100%;height:100%;object-fit:cover}
+  
   .card{background:rgba(255,255,255,0.02);padding:18px;border-radius:14px;margin-top:12px}
   .skills{display:flex;flex-wrap:wrap;gap:8px}
   .skill{border:1px solid rgba(255,255,255,0.05);padding:6px 10px;border-radius:10px;font-size:0.9rem;color:var(--muted)}
   main{margin-top:18px;display:grid;gap:22px}
   .section{padding:18px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.03)}
 
-  /* Blog Carousel */
+  /* Experience & Education */
+  .timeline{margin-top:16px;display:grid;gap:16px}
+  .timeline-item{background:rgba(255,255,255,0.02);padding:16px;border-radius:12px;border-left:3px solid rgba(37,99,235,0.5)}
+  .timeline-item h3{margin:0 0 8px 0;font-size:1.1rem}
+  .timeline-item .company{color:#60a5fa;font-weight:500;margin-bottom:4px}
+  .timeline-item .duration{color:var(--muted);font-size:0.85rem;margin-bottom:8px}
+  .timeline-item .description{color:#d1dce6;line-height:1.6;font-size:0.95rem}
+
+  /* Blog Carousel - Responsive */
   .carousel-container{position:relative;overflow:hidden;margin-top:12px}
-  .carousel{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.2) transparent}
+  .carousel{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.2) transparent;padding-bottom:8px}
   .carousel::-webkit-scrollbar{height:8px}
   .carousel::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:4px}
-  .blog-card{min-width:320px;background:rgba(255,255,255,0.03);padding:18px;border-radius:14px;
+  .blog-card{min-width:280px;background:rgba(255,255,255,0.03);padding:18px;border-radius:14px;
              cursor:pointer;border:1px solid rgba(255,255,255,0.05);transition:.3s;flex-shrink:0}
   .blog-card:hover{background:rgba(255,255,255,0.05);transform:translateY(-4px);
                    box-shadow:0 8px 24px rgba(0,0,0,0.3)}
@@ -44,9 +61,9 @@
   .blog-card .date{color:var(--muted);font-size:0.85rem;margin-bottom:8px}
   .blog-card .excerpt{color:var(--muted);font-size:0.9rem;display:-webkit-box;
                       -webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-  .carousel-nav{display:flex;justify-content:center;gap:12px;margin-top:16px}
+  .carousel-nav{display:flex;justify-content:center;gap:12px;margin-top:16px;flex-wrap:wrap}
   .carousel-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
-                padding:8px 16px;border-radius:10px;color:#e6eef6;cursor:pointer;transition:.2s;border:none}
+                padding:8px 16px;border-radius:10px;color:#e6eef6;cursor:pointer;transition:.2s}
   .carousel-btn:hover{background:rgba(255,255,255,0.08)}
 
   /* Blog Page */
@@ -68,20 +85,48 @@
               cursor:pointer;color:#e6eef6;transition:.2s;z-index:1001;font-size:0.95rem}
   .close-blog:hover{background:rgba(255,255,255,0.1)}
 
+  /* Projects - Responsive Grid */
   .project-frame{width:100%;height:480px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
-  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-top:16px}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:16px}
   .project-item{background:rgba(255,255,255,0.02);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.05)}
-  footer{margin-top:28px;text-align:center;color:var(--muted)}
-  .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:12px;color:var(--muted);text-decoration:none;display:inline-block}
+  
+  footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.9rem}
+  .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:12px;color:var(--muted);text-decoration:none;display:inline-block;transition:.2s}
   .btn:hover{background:rgba(255,255,255,0.03)}
+
+  /* Responsive Breakpoints */
+  @media(min-width:768px){
+    .hero{grid-template-columns:1fr 400px}
+    .hero-content{order:1}
+    .photo-container{order:2}
+    .blog-card{min-width:320px}
+    .projects-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  }
+  
+  @media(max-width:767px){
+    .page{padding:16px;margin:16px auto}
+    header{flex-direction:column;align-items:flex-start}
+    .nav{width:100%;justify-content:flex-start}
+    .hero{padding:20px}
+    .photo{width:200px;height:200px}
+    .section{padding:14px}
+    .project-frame{height:320px}
+    .blog-header h1{font-size:1.6rem}
+    .close-blog{top:12px;right:12px;padding:8px 14px;font-size:0.85rem}
+  }
+  
+  @media(max-width:480px){
+    .nav a{font-size:0.9rem;padding:5px 8px}
+    .logo{width:36px;height:36px;font-size:0.85rem}
+    .blog-card{min-width:240px}
+  }
 </style>
 </head>
 <body>
 <div class="page" id="mainPage">
   <header>
-    <div style="display:flex;align-items:center;gap:12px">
-      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,#1abcff22,#7b61ff22);
-      display:flex;align-items:center;justify-content:center;font-weight:700">BV</div>
+    <div class="header-left">
+      <div class="logo">BV</div>
       <div>
         <div style="font-weight:700">Bharath Vishal</div>
         <div style="font-size:12px;color:var(--muted)">Product Analyst · AI automation · Design systems</div>
@@ -89,6 +134,8 @@
     </div>
     <nav class="nav">
       <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
       <a href="#blogs">Blogs</a>
       <a href="#projects">Projects</a>
       <a href="#resume">Resume</a>
@@ -98,7 +145,7 @@
   </header>
 
   <section class="hero">
-    <div>
+    <div class="hero-content">
       <h1 id="heroName">Hi – I'm Bharath</h1>
       <p id="heroTag">I bring human simplicity into complex AI systems.</p>
       <div class="card">
@@ -113,6 +160,16 @@
 
   <main>
     <section class="section" id="about"><h2>About</h2><div id="aboutText"></div></section>
+    
+    <section class="section" id="experience">
+      <h2>Experience</h2>
+      <div class="timeline" id="experienceTimeline"></div>
+    </section>
+
+    <section class="section" id="education">
+      <h2>Education</h2>
+      <div class="timeline" id="educationTimeline"></div>
+    </section>
     
     <section class="section" id="blogs">
       <h2>Blogs</h2>
@@ -170,7 +227,41 @@ async function loadSite() {
       .map(skill => `<span class="skill">${skill}</span>`)
       .join('');
 
-    // PROJECTS — add PDF preview (iframe)
+    // EXPERIENCE
+    const expDiv = document.getElementById('experienceTimeline');
+    if (data.experience && data.experience.length > 0) {
+      expDiv.innerHTML = data.experience
+        .map(exp => `
+          <div class="timeline-item">
+            <h3>${exp.title || ''}</h3>
+            <div class="company">${exp.company || ''}</div>
+            <div class="duration">${exp.duration || ''}</div>
+            ${exp.description ? `<div class="description">${exp.description}</div>` : ''}
+          </div>
+        `)
+        .join('');
+    } else {
+      expDiv.innerHTML = '<p style="color:var(--muted)">No experience added yet.</p>';
+    }
+
+    // EDUCATION
+    const eduDiv = document.getElementById('educationTimeline');
+    if (data.education && data.education.length > 0) {
+      eduDiv.innerHTML = data.education
+        .map(edu => `
+          <div class="timeline-item">
+            <h3>${edu.degree || ''}</h3>
+            <div class="company">${edu.institution || ''}</div>
+            <div class="duration">${edu.year || ''}</div>
+            ${edu.description ? `<div class="description">${edu.description}</div>` : ''}
+          </div>
+        `)
+        .join('');
+    } else {
+      eduDiv.innerHTML = '<p style="color:var(--muted)">No education added yet.</p>';
+    }
+
+    // PROJECTS
     const projDiv = document.getElementById('projectsGrid');
     projDiv.innerHTML = (data.projects || [])
       .map(p => `
@@ -197,9 +288,9 @@ async function loadSite() {
       `)
       .join('');
 
-    // BLOGS — show image previews in carousel
+    // BLOGS
     const blogs = (data.blogs || [])
-      .filter(b => !/resume/i.test(b.title || "")) // skip “resume” posts
+      .filter(b => !/resume/i.test(b.title || ""))
       .sort((a, b) => new Date(b.date) - new Date(a.date));
 
     const blogDiv = document.getElementById('blogCarousel');
