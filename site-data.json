@@ -1,7 +1,7 @@
 {
-  "heroName": "Hi – I'm Bharath",
+  "heroName": "Hi - I'm Bharath",
   "heroTag": "I bring human simplicity into complex AI systems.",
-  "about": "Hey! I’m Bharath Vishal — welcome to my little corner of the internet.\nThis site is basically a mix of everything I do and learn — a blend of my career in AI product management, my experiments in data and design, and the random thoughts that spill out of my head when I’m trying to make sense of how tech actually feels human.\n\nI’ve spent the past few years moving between analytics, automation, and product roles — figuring out how to connect the dots between data, users, and business. Somewhere along the way, I realized I love that intersection — where logic meets creativity.\n\nSo here you’ll find my projects, blogs, and sometimes even half-baked ideas that explore how AI can make products more human (and maybe a little smarter).\n\nThink of this site as part blog, part resume, part digital whiteboard — and 100% me trying to build, learn, and share as I go.\n",
+  "about": "Hey! I'm Bharath Vishal - welcome to my little corner of the internet.\nThis site is basically a mix of everything I do and learn - a blend of my career in AI product management, my experiments in data and design, and the random thoughts that spill out of my head when I'm trying to make sense of how tech actually feels human.\n\nI've spent the past few years moving between analytics, automation, and product roles - figuring out how to connect the dots between data, users, and business. Somewhere along the way, I realized I love that intersection - where logic meets creativity.\n\nSo here you'll find my projects, blogs, and sometimes even half-baked ideas that explore how AI can make products more human (and maybe a little smarter).\n\nThink of this site as part blog, part resume, part digital whiteboard - and 100% me trying to build, learn, and share as I go.",
   "skills": [
     "Python",
     "SQL",
@@ -38,68 +38,61 @@
   ],
   "experience": [
     {
-      "title": "Senior Product Analyst — Global Product Management and Strategy",
+      "title": "Senior Product Analyst - Global Product Management and Strategy",
       "company": "Abracon",
       "duration": "Jan 2020 - Present",
-      "description": "Developed product roadmaps for the passive components portfolio, driving $3M in annual revenue and 15% market share growth.\nLed cross-functional teams to reduce production costs by 10% while enhancing quality.\nOptimized product adoption by 25% through refined go-to-market strategies.\nIntroduced new semiconductor products generating 30% revenue growth and reducing time-to-market by 20%.\nDelivered 25% ROI on all product lines via effective product lifecycle management.\n",
-      "role": "Senior Product Analyst"
+      "description": "Developed product roadmaps for the passive components portfolio, driving $3M in annual revenue and 15% market share growth. Led cross-functional teams to reduce production costs by 10% while enhancing quality. Optimized product adoption by 25% through refined go-to-market strategies. Introduced new semiconductor products generating 30% revenue growth and reducing time-to-market by 20%. Delivered 25% ROI on all product lines via effective product lifecycle management."
     },
     {
-      "title": "Job Title",
-      "company": "Schnieder Electric",
-      "duration": "Jan 2020 - Present",
-      "description": "Drove project execution across a global, multi-functional team of 15+ members, leveraging Scrum methodology and managing all related ceremonies and communications.\n\nOrchestrated organizational process standardization and system stabilization (aligned with CMMI principles), including comprehensive Root Cause Analysis (RCA) reporting.\n\nManaged complex stakeholder requirements and knowledge transfer for 30+ international sites, maintaining all business flows and documentation in Confluence.\n\nCoordinated final User Acceptance Testing (UAT) and launch activities, resulting in a 15% increase in cross-selling conversions and a measurable 20% reduction in ongoing digital maintenance costs.\n\nDrove project execution across a global, multi-functional team of 15+ members, leveraging Scrum methodology and managing all related ceremonies and communications.\n\nOrchestrated organizational process standardization and system stabilization (aligned with CMMI principles), including comprehensive Root Cause Analysis (RCA) reporting.\n\nManaged complex stakeholder requirements and knowledge transfer for 30+ international sites, maintaining all business flows and documentation in Confluence.\n\nCoordinated final User Acceptance Testing (UAT) and launch activities, resulting in a 15% increase in cross-selling conversions and a measurable 20% reduction in ongoing digital maintenance costs.\n\nLed the successful CMMI Level 3 certification",
-      "role": "Senior business analyst- E-commerce"
+      "title": "Senior Business Analyst - E-commerce",
+      "company": "Schneider Electric",
+      "duration": "Jan 2018 - Dec 2019",
+      "description": "Drove project execution across a global, multi-functional team of 15+ members, leveraging Scrum methodology and managing all related ceremonies and communications. Orchestrated organizational process standardization and system stabilization (aligned with CMMI principles), including comprehensive Root Cause Analysis (RCA) reporting. Managed complex stakeholder requirements and knowledge transfer for 30+ international sites, maintaining all business flows and documentation in Confluence. Coordinated final User Acceptance Testing (UAT) and launch activities, resulting in a 15% increase in cross-selling conversions and a measurable 20% reduction in ongoing digital maintenance costs. Led the successful CMMI Level 3 certification."
     },
     {
       "title": "Senior Business Analyst (B2B Marketing and SAAS)",
-      "company": "Company Name",
-      "duration": "Jan 2020 - Present",
-      "description": "•\tExperience in data management, including cleaning, transformation, and analysis, using tools like Excel, Salesforce, and LMS. Skilled in data quality assurance, report generation, and customer service tasks related to billing and collections.\n\n",
-      "role": "Byjus"
+      "company": "Byju's",
+      "duration": "Jan 2016 - Dec 2017",
+      "description": "Experience in data management, including cleaning, transformation, and analysis, using tools like Excel, Salesforce, and LMS. Skilled in data quality assurance, report generation, and customer service tasks related to billing and collections."
     }
   ],
   "education": [
     {
       "degree": "Master of Science (MS) in Artificial Intelligence and Machine Learning",
       "institution": "Christ Deemed to be University",
-      "year": "2025 – Present",
+      "year": "2025 - Present",
       "description": ""
     },
     {
       "degree": "Master of Business Administration (MBA) in Marketing",
       "institution": "Christ Deemed to be University",
-      "year": "2020 – 2021",
-      "description": "Student councillor ",
-      "details": "Student councillor for the Batch"
+      "year": "2020 - 2021",
+      "description": "Student councillor for the Batch"
     },
     {
       "degree": "Bachelor of Science (BSc) in Physics",
       "institution": "Srimad Andavan Arts and Science College",
-      "year": "2016 – 2019",
-      "description": "Apeiron Winner 2018",
-      "details": "Apeiron Winnder 2018"
+      "year": "2016 - 2019",
+      "description": "Apeiron Winner 2018"
     }
   ],
   "projects": [
     {
       "pdfUrl": "ppt1.pdf",
       "title": "Netflix Portfolio",
-      "description": "Overall Project Idea\nThis project proposes three major feature additions to Netflix: Live Streaming, Group Watch (Party), and Audio Movies. The core objective is to enhance the platform's social engagement and accessibility. These features aim to address user pain points like the need for shared experiences and quick, low-bandwidth content. Implementation is projected to boost key metrics, including session duration, 7-day retention, and viral growth. The technical architecture leverages a modern microservices approach with real-time capabilities."
+      "description": "Overall Project Idea: This project proposes three major feature additions to Netflix: Live Streaming, Group Watch (Party), and Audio Movies. The core objective is to enhance the platform's social engagement and accessibility. These features aim to address user pain points like the need for shared experiences and quick, low-bandwidth content. Implementation is projected to boost key metrics, including session duration, 7-day retention, and viral growth. The technical architecture leverages a modern microservices approach with real-time capabilities."
     }
   ],
   "blogs": [
     {
       "title": "How Steve Jobs's Personal Trauma Shaped the iPhone in Your Hand",
-      "subheading": "Not all ideas come up from apple falling from tree , some can be result of years of personal issues.",
+      "subheading": "Not all ideas come up from apple falling from tree, some can be result of years of personal issues.",
       "date": "2025-11-04",
       "image": "https://i.pinimg.com/736x/0d/a3/6f/0da36fc09e9a726b4175cb49616c287a.jpg",
       "imageCaption": "Steve Jobs - 1982",
-      "content": "Steve Jobs: The Man Who Connected His Dots\nEvery big personality has a story, and Steve Jobs was no different. He was like a complicated tapestry—full of bright threads and dark patches. To understand his famous Apple products, we must look at his life and see how his personal dots connected.\n\nThe Deep Pain of Being Given Away\nSteve was born in 1955 and adopted by a simple, loving couple, Paul and Clara Jobs. But the feeling of being given away always sat heavy in his heart. This pain made him an intense person, finding it hard to trust people completely.\n\nThis lack of trust turned into a need for control in his work. He didn't want Apple products to depend on anyone else. This is why Apple built a self-contained world—they control the hardware, the software, and even the store. His fear of being let down became his strength: it made the product flawless, complete, and unique.\n\nThe Calligraphy Lesson and Father's Wisdom\nEven though he dropped out of Reed College, Steve sneaked into a calligraphy class. He simply loved the beauty of the letters and the way space was handled. It was just a hobby, but ten years later, this is why the Macintosh was the first computer with beautiful, multiple fonts. He brought art to the machine.\n\nHis father, Paul Jobs, gave him a great lesson: “Paint even the back of the fence, the part no one sees.” For Steve, this meant that quality is not just for show; it is about integrity. He made sure the circuit boards inside the computer were laid out perfectly, even though the user would never look inside.\n\nThe India Trip: Finding Peace in Simplicity\nIn 1974, young Steve traveled to India looking for a guru and some spiritual peace. He was disappointed he couldn't meet his guru, but the journey still changed his life.\n\nHe saw people in ashrams and villages living happily with very few possessions. He realised that \"Simplicity is the highest form of sophistication.\"\n\nThis spiritual learning became the core of Apple's design. The iPod had one button, the iPhone had one home screen, and the products focused only on what was essential. He learned to remove clutter, believing that less is always more.\n\nThe Humble Washing Machine Story\nSteve’s obsession with design and quality wasn't only for computers; it was for everything in his life. When he and his wife, Laurene, were setting up their home, they needed a washing machine.\n\nMost people buy a washing machine quickly, but Steve spent weeks researching. He wanted to understand the deepest purpose of the machine. He compared water usage, energy, and how gently it treated the clothes.\n\nHe finally chose a Miele machine because he felt it matched his values: clean, efficient, and quiet. This small story shows his mind was always on design. He looked at every object—from a phone to a washing machine—with deep thought and an urge to make it better and purer.\n\nControl Turns Against Him\nSteve believed deeply in purity—in mind, body, and work. This led him to follow very strict fruit diets, which he thought kept his system clean and sharp.\n\nBut this need for purity became dangerous. When he was diagnosed with pancreatic cancer in 2003, he tried to cure himself with only diet and alternative medicine for nine months, refusing surgery. By the time he agreed to the operation, it was tragically late. His greatest strength—control—was the thing that ultimately went against him.\n\nConnecting the Dots\nIn the end, Steve Jobs didn't just build machines; he poured his soul and his life lessons into them. As he said, \"You can't connect the dots looking forward; you can only connect them looking backward.\"\n\nHis products are a beautiful connection of all his life's dots: the simplicity from India, the perfection from his father, and the beauty from calligraphy. He taught the world that a computer, a phone, or even a simple piece of technology can and should be a work of art."
+      "content": "Steve Jobs: The Man Who Connected His Dots\n\nEvery big personality has a story, and Steve Jobs was no different. He was like a complicated tapestry - full of bright threads and dark patches. To understand his famous Apple products, we must look at his life and see how his personal dots connected.\n\nThe Deep Pain of Being Given Away\n\nSteve was born in 1955 and adopted by a simple, loving couple, Paul and Clara Jobs. But the feeling of being given away always sat heavy in his heart. This pain made him an intense person, finding it hard to trust people completely.\n\nThis lack of trust turned into a need for control in his work. He didn't want Apple products to depend on anyone else. This is why Apple built a self-contained world - they control the hardware, the software, and even the store. His fear of being let down became his strength: it made the product flawless, complete, and unique.\n\nThe Calligraphy Lesson and Father's Wisdom\n\nEven though he dropped out of Reed College, Steve sneaked into a calligraphy class. He simply loved the beauty of the letters and the way space was handled. It was just a hobby, but ten years later, this is why the Macintosh was the first computer with beautiful, multiple fonts. He brought art to the machine.\n\nHis father, Paul Jobs, gave him a great lesson: \"Paint even the back of the fence, the part no one sees.\" For Steve, this meant that quality is not just for show; it is about integrity. He made sure the circuit boards inside the computer were laid out perfectly, even though the user would never look inside.\n\nThe India Trip: Finding Peace in Simplicity\n\nIn 1974, young Steve traveled to India looking for a guru and some spiritual peace. He was disappointed he couldn't meet his guru, but the journey still changed his life.\n\nHe saw people in ashrams and villages living happily with very few possessions. He realised that \"Simplicity is the highest form of sophistication.\"\n\nThis spiritual learning became the core of Apple's design. The iPod had one button, the iPhone had one home screen, and the products focused only on what was essential. He learned to remove clutter, believing that less is always more.\n\nThe Humble Washing Machine Story\n\nSteve's obsession with design and quality wasn't only for computers; it was for everything in his life. When he and his wife, Laurene, were setting up their home, they needed a washing machine.\n\nMost people buy a washing machine quickly, but Steve spent weeks researching. He wanted to understand the deepest purpose of the machine. He compared water usage, energy, and how gently it treated the clothes.\n\nHe finally chose a Miele machine because he felt it matched his values: clean, efficient, and quiet. This small story shows his mind was always on design. He looked at every object - from a phone to a washing machine - with deep thought and an urge to make it better and purer.\n\nControl Turns Against Him\n\nSteve believed deeply in purity - in mind, body, and work. This led him to follow very strict fruit diets, which he thought kept his system clean and sharp.\n\nBut this need for purity became dangerous. When he was diagnosed with pancreatic cancer in 2003, he tried to cure himself with only diet and alternative medicine for nine months, refusing surgery. By the time he agreed to the operation, it was tragically late. His greatest strength - control - was the thing that ultimately went against him.\n\nConnecting the Dots\n\nIn the end, Steve Jobs didn't just build machines; he poured his soul and his life lessons into them. As he said, \"You can't connect the dots looking forward; you can only connect them looking backward.\"\n\nHis products are a beautiful connection of all his life's dots: the simplicity from India, the perfection from his father, and the beauty from calligraphy. He taught the world that a computer, a phone, or even a simple piece of technology can and should be a work of art."
     }
   ],
-  "resumeUrl": "resume.pdf",
-  "contactEmail": "bharathvishal.personal@gmail.com",
   "certifications": [
     {
       "title": "Miles Mover Award",
@@ -111,5 +104,7 @@
       "issuer": "Scrum.org",
       "year": "2023"
     }
-  ]
+  ],
+  "resumeUrl": "resume.pdf",
+  "contactEmail": "bharathvishal.personal@gmail.com"
 }
