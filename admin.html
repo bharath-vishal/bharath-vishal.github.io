@@ -296,15 +296,32 @@ function saveJSON(){
 async function scanProjects(){
   document.getElementById('status').textContent="Scanning GitHub for PDFs...";
   try{
-    const r=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/`);
-    if(!r.ok)throw new Error(r.status);
-    const files=await r.json();
-    const pdfs=files.filter(f=>f.type==='file'&&f.name.endsWith('.pdf')).map(f=>({pdfUrl:f.name,title:f.name.replace(/[-_]/g,' ').replace('.pdf',''),description:''}));
+    // Scan root directory
+    const r1=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/`);
+    // Scan Projects folder
+    const r2=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/Projects`);
+    
+    let allPdfs=[];
+    
+    if(r1.ok){
+      const files=await r1.json();
+      const rootPdfs=files.filter(f=>f.type==='file'&&f.name.endsWith('.pdf')).map(f=>({pdfUrl:f.name,title:f.name.replace(/[-_]/g,' ').replace('.pdf',''),description:''}));
+      allPdfs.push(...rootPdfs);
+    }
+    
+    if(r2.ok){
+      const files=await r2.json();
+      const projectPdfs=files.filter(f=>f.type==='file'&&f.name.endsWith('.pdf')).map(f=>({pdfUrl:f.name,title:f.name.replace(/[-_]/g,' ').replace('.pdf',''),description:''}));
+      allPdfs.push(...projectPdfs);
+    }
+    
     const existing=data.projects.map(p=>p.pdfUrl);
-    pdfs.forEach(p=>{if(!existing.includes(p.pdfUrl))data.projects.push(p);});
+    allPdfs.forEach(p=>{if(!existing.includes(p.pdfUrl))data.projects.push(p);});
     renderProjects();
-    document.getElementById('status').textContent=`Found ${pdfs.length} PDFs.`;
-  }catch(e){document.getElementById('status').textContent='Could not fetch GitHub files.';}
+    document.getElementById('status').textContent=`Found ${allPdfs.length} PDFs. Click Save to update.`;
+  }catch(e){
+    document.getElementById('status').textContent='Could not fetch GitHub files. Error: '+e.message;
+  }
 }
 
 /* ---------- Upload Helper ---------- */
