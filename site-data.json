@@ -79,8 +79,8 @@
   "projects": [
     {
       "pdfUrl": "ppt1.pdf",
-      "title": "Netflix Portfolio",
-      "description": "Overall Project Idea: This project proposes three major feature additions to Netflix: Live Streaming, Group Watch (Party), and Audio Movies. The core objective is to enhance the platform's social engagement and accessibility. These features aim to address user pain points like the need for shared experiences and quick, low-bandwidth content. Implementation is projected to boost key metrics, including session duration, 7-day retention, and viral growth. The technical architecture leverages a modern microservices approach with real-time capabilities."
+      "title": "Netflix Portfolio - Feature Enhancement Project",
+      "description": "This project proposes three major feature additions to Netflix: Live Streaming, Group Watch (Party), and Audio Movies. The core objective is to enhance the platform's social engagement and accessibility. These features aim to address user pain points like the need for shared experiences and quick, low-bandwidth content. Implementation is projected to boost key metrics, including session duration, 7-day retention, and viral growth."
     }
   ],
   "blogs": [
