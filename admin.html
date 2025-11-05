@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Admin — Bharath Vishal</title>
+<style>
+  :root{--bg:#0f1115;--muted:#9aa3ad}
+  body{background:var(--bg);color:#e6eef6;font-family:Inter,system-ui,Arial;margin:0;padding:24px}
+  .card{background:rgba(255,255,255,0.03);border-radius:12px;padding:20px;margin-bottom:20px}
+  input,textarea{width:100%;padding:8px;margin:6px 0;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.15);color:#fff;font-size:15px}
+  textarea{min-height:80px}
+  button{background:#2563eb;border:none;color:#fff;padding:9px 14px;border-radius:8px;cursor:pointer;margin-top:6px}
+  button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.1)}
+  button.danger{background:#d33}
+  h1,h2{margin-top:0}
+  .hidden{display:none}
+  .list .item{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;margin-top:10px}
+  .flex{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap}
+  .small{font-size:13px;color:var(--muted)}
+  .img-preview{max-width:100%;margin-top:8px;border-radius:8px}
+</style>
+</head>
+<body>
+<div id="login" class="card">
+  <h1>Admin Login</h1>
+  <input type="password" id="pass" placeholder="Enter Password">
+  <button onclick="login()">Login</button>
+</div>
+
+<div id="panel" class="hidden">
+  <div class="card">
+    <h1>Site Editor — Bharath Vishal</h1>
+    <div class="small">Edit content, then click <b>Save & Download site-data.json</b>, and upload it to your GitHub repo root.</div>
+    <button onclick="saveJSON()">💾 Save & Download site-data.json</button>
+  </div>
+
+  <div class="card">
+    <h2>About</h2>
+    <textarea id="about"></textarea>
+  </div>
+
+  <div class="card">
+    <h2>Skills (comma separated)</h2>
+    <input id="skills" placeholder="Python, AI/ML, Product Management">
+  </div>
+
+  <div class="card">
+    <div class="flex"><h2>Projects (PDFs)</h2><button class="ghost" onclick="scanProjects()">Scan GitHub</button><button onclick="addProject()">+ Add</button></div>
+    <div id="projects" class="list"></div>
+  </div>
+
+  <div class="card">
+    <div class="flex"><h2>Blogs</h2><button onclick="addBlog()">+ Add Blog</button></div>
+    <div id="blogs" class="list"></div>
+  </div>
+
+  <div class="card">
+    <div class="flex"><h2>Certifications</h2><button onclick="addCert()">+ Add</button></div>
+    <div id="certs" class="list"></div>
+  </div>
+
+  <div class="card">
+    <h2>Resume</h2>
+    <input id="resume" placeholder="resume.pdf">
+  </div>
+
+  <div class="card">
+    <h2>Upload Helper</h2>
+    <p>Select any file to upload to your GitHub repo (images, PDFs, JSON).</p>
+    <input type="file" id="filePicker">
+    <button onclick="openRepo()">Open GitHub Upload Page</button>
+    <div class="small">This opens: <code>https://github.com/bharath-vishal/bharath-vishal.github.io/upload/main</code></div>
+  </div>
+
+  <div class="small" id="status"></div>
+</div>
+
+<script>
+const PASSWORD="*Bharath1";
+const OWNER="bharath-vishal";
+const REPO="bharath-vishal.github.io";
+let data={about:"",skills:[],projects:[],blogs:[],certifications:[],resumeUrl:"resume.pdf"};
+
+function login(){
+  if(document.getElementById('pass').value===PASSWORD){
+    document.getElementById('login').classList.add('hidden');
+    document.getElementById('panel').classList.remove('hidden');
+    loadExisting();
+  }else alert("Wrong password");
+}
+
+async function loadExisting(){
+  try{const r=await fetch('site-data.json');if(r.ok){data=await r.json();}}
+  catch(e){console.log(e);}
+  render();
+}
+
+/* ---------- RENDER ---------- */
+function render(){
+  document.getElementById('about').value=data.about||"";
+  document.getElementById('skills').value=(data.skills||[]).join(', ');
+  document.getElementById('resume').value=data.resumeUrl||"resume.pdf";
+  renderProjects();renderBlogs();renderCerts();
+}
+
+/* ---------- PROJECTS ---------- */
+function renderProjects(){
+  const c=document.getElementById('projects');c.innerHTML='';
+  (data.projects||[]).forEach((p,i)=>{
+    const d=document.createElement('div');d.className='item';
+    d.innerHTML=`
+      <div class="flex"><b>${p.title||p.pdfUrl}</b>
+        <div>
+          <button class="ghost" onclick="moveItem(data.projects,${i},-1,renderProjects)">↑</button>
+          <button class="ghost" onclick="moveItem(data.projects,${i},1,renderProjects)">↓</button>
+          <button class="danger" onclick="delItem(data.projects,${i},renderProjects)">✕</button>
+        </div>
+      </div>
+      <label>PDF URL</label><input value="${p.pdfUrl||''}" onchange="data.projects[${i}].pdfUrl=this.value">
+      <label>Title</label><input value="${p.title||''}" onchange="data.projects[${i}].title=this.value">
+    `;
+    c.appendChild(d);
+  });
+}
+function addProject(){data.projects.push({title:"New Project",pdfUrl:"project.pdf"});renderProjects();}
+
+/* ---------- BLOGS ---------- */
+function renderBlogs(){
+  const c=document.getElementById('blogs');c.innerHTML='';
+  (data.blogs||[]).forEach((b,i)=>{
+    const d=document.createElement('div');d.className='item';
+    d.innerHTML=`
+      <div class="flex"><b>${b.title||'Blog '+(i+1)}</b>
+        <div>
+          <button class="ghost" onclick="moveItem(data.blogs,${i},-1,renderBlogs)">↑</button>
+          <button class="ghost" onclick="moveItem(data.blogs,${i},1,renderBlogs)">↓</button>
+          <button class="danger" onclick="delItem(data.blogs,${i},renderBlogs)">✕</button>
+        </div>
+      </div>
+      <label>Headline</label><input value="${b.title||''}" onchange="data.blogs[${i}].title=this.value">
+      <label>Subheading</label><input value="${b.subheading||''}" onchange="data.blogs[${i}].subheading=this.value">
+      <label>Date</label><input value="${b.date||today()}" onchange="data.blogs[${i}].date=this.value">
+      <label>Image URL</label><input value="${b.image||''}" onchange="data.blogs[${i}].image=this.value">
+      <label>Image Caption</label><input value="${b.imageCaption||''}" onchange="data.blogs[${i}].imageCaption=this.value">
+      <label>Blog Text</label><textarea onchange="data.blogs[${i}].content=this.value">${b.content||''}</textarea>
+      ${b.image?`<img src="${b.image}" class="img-preview">`:''}
+    `;
+    c.appendChild(d);
+  });
+}
+function addBlog(){
+  data.blogs.unshift({title:"New Blog",subheading:"",date:today(),image:"",imageCaption:"",content:""});
+  renderBlogs();
+}
+
+/* ---------- CERTIFICATIONS ---------- */
+function renderCerts(){
+  const c=document.getElementById('certs');c.innerHTML='';
+  (data.certifications||[]).forEach((x,i)=>{
+    const d=document.createElement('div');d.className='item';
+    d.innerHTML=`
+      <div class="flex"><b>${x.title||'Cert '+(i+1)}</b>
+        <div>
+          <button class="ghost" onclick="moveItem(data.certifications,${i},-1,renderCerts)">↑</button>
+          <button class="ghost" onclick="moveItem(data.certifications,${i},1,renderCerts)">↓</button>
+          <button class="danger" onclick="delItem(data.certifications,${i},renderCerts)">✕</button>
+        </div>
+      </div>
+      <label>Title</label><input value="${x.title||''}" onchange="data.certifications[${i}].title=this.value">
+      <label>Issuer</label><input value="${x.issuer||''}" onchange="data.certifications[${i}].issuer=this.value">
+      <label>Year</label><input value="${x.year||''}" onchange="data.certifications[${i}].year=this.value">
+    `;
+    c.appendChild(d);
+  });
+}
+function addCert(){data.certifications.push({title:"New Certification",issuer:"",year:""});renderCerts();}
+
+/* ---------- UTIL ---------- */
+function moveItem(arr,i,dir,reRender){const j=i+dir;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]];reRender();}
+function delItem(arr,i,reRender){if(confirm('Delete this item?')){arr.splice(i,1);reRender();}}
+function today(){return new Date().toISOString().split('T')[0];}
+
+/* ---------- SAVE ---------- */
+function saveJSON(){
+  data.about=document.getElementById('about').value;
+  data.skills=document.getElementById('skills').value.split(',').map(x=>x.trim()).filter(Boolean);
+  data.resumeUrl=document.getElementById('resume').value||'resume.pdf';
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='site-data.json';a.click();
+}
+
+/* ---------- GITHUB SCAN ---------- */
+async function scanProjects(){
+  document.getElementById('status').textContent="Scanning GitHub for PDFs...";
+  try{
+    const r=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/`);
+    if(!r.ok)throw new Error(r.status);
+    const files=await r.json();
+    const pdfs=files.filter(f=>f.type==='file'&&f.name.endsWith('.pdf')).map(f=>({pdfUrl:f.name,title:f.name.replace(/[-_]/g,' ').replace('.pdf','')}));
+    const existing=data.projects.map(p=>p.pdfUrl);
+    pdfs.forEach(p=>{if(!existing.includes(p.pdfUrl))data.projects.push(p);});
+    renderProjects();
+    document.getElementById('status').textContent=`Found ${pdfs.length} PDFs.`;
+  }catch(e){document.getElementById('status').textContent='Could not fetch GitHub files.';}
+}
+
+/* ---------- Upload Helper ---------- */
+function openRepo(){
+  window.open(`https://github.com/${OWNER}/${REPO}/upload/main`,"_blank");
+}
+</script>
+</body>
+</html>
