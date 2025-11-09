@@ -1,370 +1,110 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Bharath Vishal – Portfolio</title>
-<link rel="icon" href="" />
-<style>
-  :root {
-    --bg:#0f1115;
-    --muted:#9aa3ad;
-    --body-text:#d1dce6;
-    --brand-green:#1db954;
-    --brand-green-hover:#1ed760;
-    --glass: rgba(255,255,255,0.03);
-    font-family: Inter, ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  }
-  html,body{height:100%;margin:0;background:var(--bg);color:#e6eef6;}
-  .page{max-width:1100px;margin:36px auto;padding:28px;}
-  
-  /* Header - Responsive */
-  header{display:flex;align-items:center;justify-content:flex-end;margin-bottom:22px;gap:16px;flex-wrap:wrap}
-  .nav{display:flex;gap:12px;flex-wrap:wrap}
-  .nav a{color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:12px;transition:.18s;white-space:nowrap;font-size:0.95rem}
-  .nav a:hover{background:var(--glass);color:#fff}
-  
-  /* Hero - Responsive Grid */
-  .hero{display:grid;grid-template-columns:1fr;gap:32px;padding:28px;background:var(--glass);
-        border-radius:20px;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.05)}
-  .photo-container{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;order:1}
-  .hero-content{order:2}
-  .hero-content h1{font-size:1.5rem;margin:0 0 12px 0}
-  .hero-content p{color:var(--body-text);font-size:0.95rem;line-height:1.6}
-  .photo{width:280px;height:280px;border-radius:50%;overflow:hidden;
-         border:4px solid rgba(29,185,84,0.2);background:#1b2430;display:flex;align-items:center;
-         justify-content:center;box-shadow:0 12px 40px rgba(0,0,0,0.4)}
-  .photo img{width:100%;height:100%;object-fit:cover}
-  
-  .card{background:var(--glass);padding:18px;border-radius:14px;margin-top:12px;border:1px solid rgba(255,255,255,0.05)}
-  .card b{font-size:1.1rem;display:block;margin-bottom:12px}
-  .skills{display:flex;flex-wrap:wrap;gap:8px}
-  .skill{border:1px solid rgba(255,255,255,0.08);padding:6px 10px;border-radius:10px;font-size:0.9rem;color:var(--muted);background:rgba(255,255,255,0.02)}
-  
-  main{margin-top:22px;display:grid;gap:22px}
-  .section{padding:18px;border-radius:12px;background:var(--glass);border:1px solid rgba(255,255,255,0.05)}
-  .section h2{font-size:1.5rem;margin:0 0 16px 0}
-  .section p{color:var(--body-text);font-size:0.95rem;line-height:1.6}
-
-  /* Experience & Education */
-  .timeline{margin-top:16px;display:grid;gap:16px}
-  .timeline-item{background:var(--glass);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.05)}
-  .timeline-item h3{margin:0 0 8px 0;font-size:1.1rem}
-  .timeline-item .company{color:var(--brand-green);font-weight:500;margin-bottom:4px}
-  .timeline-item .duration{color:var(--muted);font-size:0.85rem;margin-bottom:8px}
-  .timeline-item .description{color:var(--body-text);line-height:1.6;font-size:0.95rem}
-
-  /* Blog Carousel - Responsive */
-  .carousel-container{position:relative;overflow:hidden;margin-top:12px}
-  .carousel{display:flex;gap:20px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:rgba(29,185,84,0.3) transparent;padding-bottom:8px}
-  .carousel::-webkit-scrollbar{height:8px}
-  .carousel::-webkit-scrollbar-thumb{background:rgba(29,185,84,0.3);border-radius:4px}
-  .blog-card{min-width:360px;max-width:360px;background:var(--glass);padding:0;border-radius:14px;
-             cursor:pointer;border:1px solid rgba(255,255,255,0.05);transition:.3s;flex-shrink:0;overflow:hidden}
-  .blog-card:hover{background:rgba(255,255,255,0.05);transform:translateY(-4px);
-                   box-shadow:0 8px 24px rgba(29,185,84,0.15)}
-  .blog-card-image{width:100%;height:200px;overflow:hidden;background:#1b2430;display:flex;align-items:center;justify-content:center}
-  .blog-card-image img{width:100%;height:100%;object-fit:cover;object-position:center}
-  .blog-card-content{padding:18px}
-  .blog-card h3{margin:0 0 8px 0;font-size:1.1rem;line-height:1.3}
-  .blog-card .date{color:var(--muted);font-size:0.85rem;margin-bottom:10px}
-  .blog-card .excerpt{color:var(--body-text);font-size:0.95rem;line-height:1.5;display:-webkit-box;
-                      -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .carousel-nav{display:flex;justify-content:center;gap:12px;margin-top:16px;flex-wrap:wrap}
-  .carousel-btn{background:var(--glass);border:1px solid rgba(255,255,255,0.08);
-                padding:8px 16px;border-radius:10px;color:#e6eef6;cursor:pointer;transition:.2s;font-size:0.95rem}
-  .carousel-btn:hover{background:rgba(29,185,84,0.1);border-color:rgba(29,185,84,0.3)}
-
-  /* Blog Page */
-  .blog-page{display:none;position:fixed;inset:0;background:var(--bg);z-index:1000;overflow-y:auto}
-  .blog-page.active{display:block;animation:fadeIn 0.3s ease}
-  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-  .blog-content{max-width:800px;margin:0 auto;padding:60px 28px 40px 28px}
-  .blog-header{margin-bottom:32px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:24px}
-  .blog-header h1{font-size:2.2rem;margin:0 0 12px 0;line-height:1.2}
-  .blog-header .subheading{font-size:1.2rem;color:var(--muted);margin-bottom:16px;line-height:1.4}
-  .blog-header .meta{color:var(--muted);font-size:0.9rem}
-  .blog-body{line-height:1.8;font-size:1.05rem}
-  .blog-body p{margin:20px 0;color:var(--body-text)}
-  .blog-image{margin:30px 0;text-align:center}
-  .blog-image img{max-width:100%;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.05)}
-  .blog-image figcaption{margin-top:12px;color:var(--muted);font-size:0.9rem;font-style:italic}
-  .close-blog{position:fixed;top:20px;right:28px;background:var(--brand-green);
-              border:1px solid rgba(255,255,255,0.1);padding:10px 20px;border-radius:12px;
-              cursor:pointer;color:#fff;transition:.2s;z-index:1001;font-size:0.95rem;font-weight:500}
-  .close-blog:hover{background:var(--brand-green-hover);box-shadow:0 4px 12px rgba(29,185,84,0.4)}
-
-  /* Projects - Responsive Grid */
-  .project-frame{width:100%;height:400px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.05)}
-  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:16px}
-  .project-item{background:var(--glass);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.05)}
-  .project-item h3{font-size:1.1rem;margin:0 0 12px 0}
-  .project-item p{color:var(--body-text);font-size:0.95rem;line-height:1.6;margin:0 0 16px 0}
-  
-  footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.9rem;padding:20px 0}
-  .btn{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 16px;border-radius:12px;color:var(--muted);text-decoration:none;display:inline-block;transition:.2s;font-size:0.95rem}
-  .btn:hover{background:var(--glass);color:#fff;border-color:rgba(255,255,255,0.12)}
-  .btn-primary{background:var(--brand-green);color:#fff;border-color:var(--brand-green)}
-  .btn-primary:hover{background:var(--brand-green-hover);border-color:var(--brand-green-hover);box-shadow:0 4px 12px rgba(29,185,84,0.4)}
-
-  /* Responsive Breakpoints */
-  @media(min-width:768px){
-    .hero{grid-template-columns:1fr 400px}
-    .hero-content{order:1}
-    .photo-container{order:2}
-    .blog-card{min-width:320px}
-    .projects-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
-  }
-  
-  @media(max-width:767px){
-    .page{padding:16px;margin:16px auto}
-    header{justify-content:flex-start}
-    .nav{width:100%;justify-content:flex-start}
-    .hero{padding:20px}
-    .photo{width:200px;height:200px}
-    .section{padding:14px}
-    .project-frame{height:320px}
-    .blog-header h1{font-size:1.6rem}
-    .close-blog{top:12px;right:12px;padding:8px 14px;font-size:0.85rem}
-  }
-  
-  @media(max-width:480px){
-    .nav a{font-size:0.9rem;padding:5px 8px}
-    .blog-card{min-width:240px}
-  }
-</style>
-</head>
-<body>
-<div class="page" id="mainPage">
-  <header>
-    <nav class="nav">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#blogs">Blogs</a>
-      <a href="#projects">Projects</a>
-      <a href="#resume">Resume</a>
-      <a href="#contact">Contact</a>
-      <a class="btn" href="admin.html">Admin</a>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <div class="hero-content">
-      <h1 id="heroName">Hi – I'm Bharath</h1>
-      <p id="heroTag">I bring human simplicity into complex AI systems.</p>
-      <div class="card">
-        <b>Skills</b>
-        <div class="skills" id="skills"></div>
-      </div>
-    </div>
-    <div class="photo-container">
-      <div class="photo"><img id="heroPhoto" src="Images/photo.png" alt="Bharath photo"></div>
-    </div>
-  </section>
-
-  <main>
-    <section class="section" id="about"><h2>About</h2><div id="aboutText"></div></section>
-    
-    <section class="section" id="experience">
-      <h2>Experience</h2>
-      <div class="timeline" id="experienceTimeline"></div>
-    </section>
-
-    <section class="section" id="education">
-      <h2>Education</h2>
-      <div class="timeline" id="educationTimeline"></div>
-    </section>
-    
-    <section class="section" id="blogs">
-      <h2>Blogs</h2>
-      <div class="carousel-container">
-        <div class="carousel" id="blogCarousel"></div>
-      </div>
-      <div class="carousel-nav">
-        <button class="carousel-btn" onclick="scrollCarousel(-1)">← Previous</button>
-        <button class="carousel-btn" onclick="scrollCarousel(1)">Next →</button>
-      </div>
-    </section>
-    
-    <section class="section" id="projects">
-      <h2>Projects</h2>
-      <div class="projects-grid" id="projectsGrid"></div>
-    </section>
-
-    <section class="section" id="resume">
-      <h2>Resume</h2>
-      <a id="resumeLink" class="btn btn-primary" href="resume.pdf" target="_blank">📄 View Resume</a>
-    </section>
-
-    <section class="section" id="contact">
-      <h2>Contact</h2>
-      <a id="contactEmail" href="#">you@example.com</a>
-    </section>
-  </main>
-  <footer>© Bharath Vishal – Built for simplicity</footer>
-</div>
-
-<div class="blog-page" id="blogPage">
-  <button class="close-blog" onclick="closeBlog()">✕ Close</button>
-  <div class="blog-content">
-    <div class="blog-header">
-      <h1 id="blogTitle"></h1>
-      <div class="subheading" id="blogSubheading"></div>
-      <div class="meta" id="blogMeta"></div>
-    </div>
-    <div class="blog-body" id="blogBody"></div>
-  </div>
-</div>
-
-<script>
-async function loadSite() {
-  try {
-    const res = await fetch('site-data.json?v=' + Date.now());
-    const data = await res.json();
-
-    // ABOUT
-    document.getElementById('aboutText').textContent = data.about || '';
-
-    // SKILLS
-    const skillsDiv = document.getElementById('skills');
-    skillsDiv.innerHTML = (data.skills || [])
-      .map(skill => `<span class="skill">${skill}</span>`)
-      .join('');
-
-    // EXPERIENCE
-    const expDiv = document.getElementById('experienceTimeline');
-    if (data.experience && data.experience.length > 0) {
-      expDiv.innerHTML = data.experience
-        .map(exp => `
-          <div class="timeline-item">
-            <h3>${exp.title || ''}</h3>
-            <div class="company">${exp.company || ''}</div>
-            <div class="duration">${exp.duration || ''}</div>
-            ${exp.description ? `<div class="description">${exp.description}</div>` : ''}
-          </div>
-        `)
-        .join('');
-    } else {
-      expDiv.innerHTML = '<p style="color:var(--muted)">No experience added yet.</p>';
+{
+  "heroName": "Hi - I'm Bharath",
+  "heroTag": "I bring human simplicity into complex AI systems.",
+  "about": "Hey! I'm Bharath Vishal - welcome to my little corner of the internet.\nThis site is basically a mix of everything I do and learn - a blend of my career in AI product management, my experiments in data and design, and the random thoughts that spill out of my head when I'm trying to make sense of how tech actually feels human.\n\nI've spent the past few years moving between analytics, automation, and product roles - figuring out how to connect the dots between data, users, and business. Somewhere along the way, I realized I love that intersection - where logic meets creativity.\n\nSo here you'll find my projects, blogs, and sometimes even half-baked ideas that explore how AI can make products more human (and maybe a little smarter).\n\nThink of this site as part blog, part resume, part digital whiteboard - and 100% me trying to build, learn, and share as I go.",
+  "skills": [
+    "Python",
+    "SQL",
+    "Power BI",
+    "Tableau",
+    "Excel",
+    "Scikit-learn",
+    "Pandas",
+    "NumPy",
+    "Matplotlib",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "REST API",
+    "JSON",
+    "Git",
+    "GitHub",
+    "Figma",
+    "Adobe XD",
+    "Jira",
+    "Confluence",
+    "Google Analytics",
+    "Mixpanel",
+    "Amplitude",
+    "AI",
+    "Machine Learning",
+    "NLP",
+    "Data Visualization",
+    "Data Cleaning",
+    "Feature Engineering",
+    "Automation",
+    "Forecasting",
+    "A/B Testing"
+  ],
+  "experience": [
+    {
+      "title": "Senior Product Analyst - Global Product Management and Strategy",
+      "company": "Abracon",
+      "duration": "Jan 2020 - Present",
+      "description": "Developed product roadmaps for the passive components portfolio, driving $3M in annual revenue and 15% market share growth. Led cross-functional teams to reduce production costs by 10% while enhancing quality. Optimized product adoption by 25% through refined go-to-market strategies. Introduced new semiconductor products generating 30% revenue growth and reducing time-to-market by 20%. Delivered 25% ROI on all product lines via effective product lifecycle management."
+    },
+    {
+      "title": "Senior Business Analyst - E-commerce",
+      "company": "Schneider Electric",
+      "duration": "Jan 2018 - Dec 2019",
+      "description": "Drove project execution across a global, multi-functional team of 15+ members, leveraging Scrum methodology and managing all related ceremonies and communications. Orchestrated organizational process standardization and system stabilization (aligned with CMMI principles), including comprehensive Root Cause Analysis (RCA) reporting. Managed complex stakeholder requirements and knowledge transfer for 30+ international sites, maintaining all business flows and documentation in Confluence. Coordinated final User Acceptance Testing (UAT) and launch activities, resulting in a 15% increase in cross-selling conversions and a measurable 20% reduction in ongoing digital maintenance costs. Led the successful CMMI Level 3 certification."
+    },
+    {
+      "title": "Senior Business Analyst (B2B Marketing and SAAS)",
+      "company": "Byju's",
+      "duration": "Jan 2016 - Dec 2017",
+      "description": "Experience in data management, including cleaning, transformation, and analysis, using tools like Excel, Salesforce, and LMS. Skilled in data quality assurance, report generation, and customer service tasks related to billing and collections."
     }
-
-    // EDUCATION
-    const eduDiv = document.getElementById('educationTimeline');
-    if (data.education && data.education.length > 0) {
-      eduDiv.innerHTML = data.education
-        .map(edu => `
-          <div class="timeline-item">
-            <h3>${edu.degree || ''}</h3>
-            <div class="company">${edu.institution || ''}</div>
-            <div class="duration">${edu.year || ''}</div>
-            ${edu.description ? `<div class="description">${edu.description}</div>` : ''}
-          </div>
-        `)
-        .join('');
-    } else {
-      eduDiv.innerHTML = '<p style="color:var(--muted)">No education added yet.</p>';
+  ],
+  "education": [
+    {
+      "degree": "Master of Science (MS) in Artificial Intelligence and Machine Learning",
+      "institution": "Christ Deemed to be University",
+      "year": "2025 - Present",
+      "description": ""
+    },
+    {
+      "degree": "Master of Business Administration (MBA) in Marketing",
+      "institution": "Christ Deemed to be University",
+      "year": "2020 - 2021",
+      "description": "Student councillor for the Batch"
+    },
+    {
+      "degree": "Bachelor of Science (BSc) in Physics",
+      "institution": "Srimad Andavan Arts and Science College",
+      "year": "2016 - 2019",
+      "description": "Apeiron Winner 2018"
     }
-
-    // PROJECTS
-    const projDiv = document.getElementById('projectsGrid');
-    projDiv.innerHTML = (data.projects || [])
-      .map(p => {
-        const pdfPath = p.pdfUrl.includes('/') ? p.pdfUrl : `Projects/${p.pdfUrl}`;
-        return `
-        <div class="project-item">
-          <h3>${p.title || p.pdfUrl}</h3>
-          ${p.description ? `<p>${p.description}</p>` : ''}
-          ${
-            p.pdfUrl
-              ? `<iframe class="project-frame" src="${pdfPath}#toolbar=0&navpanes=0" 
-                   title="${p.title || 'Project PDF Preview'}"></iframe>`
-              : ''
-          }
-          ${
-            p.pdfUrl
-              ? `<p style="margin-top:12px"><a href="${pdfPath}" target="_blank" class="btn">📄 View Full PDF</a></p>`
-              : ''
-          }
-          ${
-            p.link
-              ? `<p style="margin-top:8px"><a href="${p.link}" target="_blank" class="btn">🔗 Open Project</a></p>`
-              : ''
-          }
-        </div>
-      `;
-      })
-      .join('');
-
-    // BLOGS
-    const blogs = (data.blogs || [])
-      .filter(b => !/resume/i.test(b.title || ""))
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    const blogDiv = document.getElementById('blogCarousel');
-    blogDiv.innerHTML = blogs
-      .map(blog => `
-        <div class="blog-card" onclick="openBlog(${JSON.stringify(blog).replace(/"/g, '&quot;')})">
-          ${
-            blog.image
-              ? `<div class="blog-card-image">
-                   <img src="${blog.image}" alt="${blog.title}">
-                 </div>`
-              : ''
-          }
-          <div class="blog-card-content">
-            <h3>${blog.title}</h3>
-            <div class="date">${blog.date || ''}</div>
-            <div class="excerpt">${blog.subheading || ''}</div>
-          </div>
-        </div>
-      `)
-      .join('');
-
-    // RESUME
-    document.getElementById('resumeLink').href = data.resumeUrl || 'resume.pdf';
-
-    // CONTACT
-    if (data.contactEmail) {
-      document.getElementById('contactEmail').textContent = data.contactEmail;
-      document.getElementById('contactEmail').href = `mailto:${data.contactEmail}`;
+  ],
+  "projects": [
+    {
+      "pdfUrl": "ppt1.pdf",
+      "title": "Netflix Portfolio - Feature Enhancement Project",
+      "description": "This project proposes three major feature additions to Netflix: Live Streaming, Group Watch (Party), and Audio Movies. The core objective is to enhance the platform's social engagement and accessibility. These features aim to address user pain points like the need for shared experiences and quick, low-bandwidth content. Implementation is projected to boost key metrics, including session duration, 7-day retention, and viral growth."
     }
-  } catch (err) {
-    console.error("Error loading JSON:", err);
-    document.getElementById('aboutText').textContent =
-      "Error loading site-data.json. Check file path or syntax.";
-  }
+  ],
+  "blogs": [
+    {
+      "title": "How Steve Jobs's Personal Trauma Shaped the iPhone in Your Hand",
+      "subheading": "Not all ideas come up from apple falling from tree, some can be result of years of personal issues.",
+      "date": "2025-11-04",
+      "image": "https://i.pinimg.com/736x/0d/a3/6f/0da36fc09e9a726b4175cb49616c287a.jpg",
+      "imageCaption": "Steve Jobs - 1982",
+      "content": "Steve Jobs: The Man Who Connected His Dots\n\nEvery big personality has a story, and Steve Jobs was no different. He was like a complicated tapestry - full of bright threads and dark patches. To understand his famous Apple products, we must look at his life and see how his personal dots connected.\n\nThe Deep Pain of Being Given Away\n\nSteve was born in 1955 and adopted by a simple, loving couple, Paul and Clara Jobs. But the feeling of being given away always sat heavy in his heart. This pain made him an intense person, finding it hard to trust people completely.\n\nThis lack of trust turned into a need for control in his work. He didn't want Apple products to depend on anyone else. This is why Apple built a self-contained world - they control the hardware, the software, and even the store. His fear of being let down became his strength: it made the product flawless, complete, and unique.\n\nThe Calligraphy Lesson and Father's Wisdom\n\nEven though he dropped out of Reed College, Steve sneaked into a calligraphy class. He simply loved the beauty of the letters and the way space was handled. It was just a hobby, but ten years later, this is why the Macintosh was the first computer with beautiful, multiple fonts. He brought art to the machine.\n\nHis father, Paul Jobs, gave him a great lesson: \"Paint even the back of the fence, the part no one sees.\" For Steve, this meant that quality is not just for show; it is about integrity. He made sure the circuit boards inside the computer were laid out perfectly, even though the user would never look inside.\n\nThe India Trip: Finding Peace in Simplicity\n\nIn 1974, young Steve traveled to India looking for a guru and some spiritual peace. He was disappointed he couldn't meet his guru, but the journey still changed his life.\n\nHe saw people in ashrams and villages living happily with very few possessions. He realised that \"Simplicity is the highest form of sophistication.\"\n\nThis spiritual learning became the core of Apple's design. The iPod had one button, the iPhone had one home screen, and the products focused only on what was essential. He learned to remove clutter, believing that less is always more.\n\nThe Humble Washing Machine Story\n\nSteve's obsession with design and quality wasn't only for computers; it was for everything in his life. When he and his wife, Laurene, were setting up their home, they needed a washing machine.\n\nMost people buy a washing machine quickly, but Steve spent weeks researching. He wanted to understand the deepest purpose of the machine. He compared water usage, energy, and how gently it treated the clothes.\n\nHe finally chose a Miele machine because he felt it matched his values: clean, efficient, and quiet. This small story shows his mind was always on design. He looked at every object - from a phone to a washing machine - with deep thought and an urge to make it better and purer.\n\nControl Turns Against Him\n\nSteve believed deeply in purity - in mind, body, and work. This led him to follow very strict fruit diets, which he thought kept his system clean and sharp.\n\nBut this need for purity became dangerous. When he was diagnosed with pancreatic cancer in 2003, he tried to cure himself with only diet and alternative medicine for nine months, refusing surgery. By the time he agreed to the operation, it was tragically late. His greatest strength - control - was the thing that ultimately went against him.\n\nConnecting the Dots\n\nIn the end, Steve Jobs didn't just build machines; he poured his soul and his life lessons into them. As he said, \"You can't connect the dots looking forward; you can only connect them looking backward.\"\n\nHis products are a beautiful connection of all his life's dots: the simplicity from India, the perfection from his father, and the beauty from calligraphy. He taught the world that a computer, a phone, or even a simple piece of technology can and should be a work of art."
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Miles Mover Award",
+      "issuer": "Schneider Electric",
+      "year": "2023"
+    },
+    {
+      "title": "PSPO",
+      "issuer": "Scrum.org",
+      "year": "2023"
+    }
+  ],
+  "resumeUrl": "resume.pdf",
+  "contactEmail": "bharathvishal.personal@gmail.com"
 }
-
-// BLOG VIEW HANDLERS
-function openBlog(blog) {
-  document.getElementById('mainPage').style.display = 'none';
-  document.getElementById('blogPage').classList.add('active');
-  document.getElementById('blogTitle').textContent = blog.title || '';
-  document.getElementById('blogSubheading').textContent = blog.subheading || '';
-  document.getElementById('blogMeta').textContent = blog.date || '';
-  document.getElementById('blogBody').innerHTML = `
-    ${blog.image ? `<figure class="blog-image">
-      <img src="${blog.image}" alt="">
-      ${blog.imageCaption ? `<figcaption>${blog.imageCaption}</figcaption>` : ''}
-    </figure>` : ''}
-    <p>${(blog.content || '').replace(/\n/g, '</p><p>')}</p>
-  `;
-}
-
-function closeBlog() {
-  document.getElementById('blogPage').classList.remove('active');
-  document.getElementById('mainPage').style.display = '';
-}
-
-function scrollCarousel(dir) {
-  document.getElementById('blogCarousel').scrollBy({
-    left: dir * 400,
-    behavior: 'smooth'
-  });
-}
-
-loadSite();
-</script>
-</body>
-</html>
