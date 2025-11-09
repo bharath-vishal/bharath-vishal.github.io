@@ -1,110 +1,59 @@
 {
-  "heroName": "Hi - I'm Bharath",
-  "heroTag": "I bring human simplicity into complex AI systems.",
-  "about": "Hey! I'm Bharath Vishal — welcome to my little corner of the internet.\nThis site blends my journey through AI product management, analytics, and design. I love exploring where logic meets creativity — turning data into insight and products into experiences that actually feel human.\n\nOver the years, I’ve moved across roles in analytics, automation, and product management at Byju’s, Schneider Electric, and Abracon. Each role taught me something new about connecting business, users, and technology.\n\nHere you’ll find my projects, blogs, and experiments that explore how AI can make products more intuitive, meaningful, and delightful.",
-  
+  "about": "Dynamic Product Analyst with 3+ years of experience in energy automation and electronics. Expertise in data analysis, product management, and marketing strategy, driving 15% market share growth and $3M in annual revenue at Abracon. Skilled in Power BI, Excel, and cross-functional collaboration to optimize product roadmaps, enhance customer satisfaction, and improve operational efficiency. Proven track record of exceeding goals and driving profitability.",
   "skills": [
-    "Power BI",
     "Excel",
     "Python",
-    "SQL",
-    "Tableau",
-    "Amplitude",
-    "Mixpanel",
-    "Google Analytics",
-    "Typeform",
-    "SurveyMonkey",
-    "Hotjar",
-    "UserTesting",
-    "Figma",
-    "Adobe XD",
-    "Sketch",
-    "InVision",
-    "Canva",
-    "Photoshop",
-    "After Effects",
-    "Premiere Pro",
-    "Jira",
-    "Trello",
-    "Asana",
-    "Monday.com",
-    "ClickUp",
-    "Productboard",
-    "Aha!",
-    "Roadmunk",
-    "Airfocus",
-    "Confluence",
-    "Notion",
-    "Miro",
-    "Coda",
-    "Slack",
-    "Microsoft 365",
-    "Dynamics",
-    "SharePoint",
-    "AI",
-    "Machine Learning",
-    "Data Visualization",
-    "Feature Engineering",
-    "A/B Testing",
-    "Automation"
+    "Jira | Trello | Asana | Monday.com | ClickUp | Productboard | Aha! | Roadmunk | Airfocus | Amplitude | Mixpanel | Google Analytics | Tableau | Power BI | Typeform | SurveyMonkey | Hotjar | UserTesting | Confluence | Notion | Miro | Coda | Slack | Figma | Adobe XD | Sketch | InVision | Canva | Photoshop | After Effects | Premiere Pro | Microsoft 365 | Dynamics | SharePoint"
   ],
-
   "experience": [
     {
-      "title": "Product Analyst - Global Product Management",
+      "title": "Senior Product Analyst",
       "company": "Abracon",
       "duration": "Jan 2025 - Present",
-      "description": "Developed and executed product roadmaps for the passive components portfolio, driving a 15% increase in market share and $3M in annual revenue from five new products. Led cross-functional teams to reduce production costs by 10% while maintaining quality. Optimized product adoption by 25% through refined go-to-market strategies. Introduced new semiconductor products generating 30% revenue growth and reducing time-to-market by 20%. Delivered 25% ROI on all product lines through effective product lifecycle management."
+      "description": "Developed and executed product roadmaps for the passive components portfolio, driving a 15% increase in market share and $3M in annual revenue from 5 new products.\n•\nLed cross-functional teams to reduce production costs by 10%, while maintaining quality, and enhanced product features, resulting in a 20% increase in customer satisfaction.\n•\nOptimized product adoption by 25% through refined go-to-market strategies and key messaging for target customer segments.\n•\nManaged and prioritized product backlogs, ensuring 80% of features were delivered on time and within budget, in alignment with strategic objectives.\n•\nIntroduced new semiconductor products, generating a 30% revenue increase and reducing time-to-market by 20% through collaboration with R&D teams.\n•\nDrove product lifecycle management, delivering products that contributed $2M in revenue within the first year and achieving 25% ROI on all product lines.\n•\nLed customer feedback sessions, reducing post-launch product issues by 40%, improving customer loyalty, and minimizing support costs."
     },
     {
-      "title": "Senior Product Analyst - Global Marketing and E-Commerce (B2B SaaS)",
+      "title": "Senior Business Analyst- Ecommerce",
       "company": "Schneider Electric",
-      "duration": "Jan 2022 - Dec 2024",
-      "description": "Spearheaded product launches, optimizing nomenclature, categorization, and tag management — reducing product errors by 20% and improving search functionality. Conducted market research to drive a 25% increase in EcoXtructure market share. Built Power BI dashboards improving sales conversion by 12%. Enhanced product data processes, cutting search time by 40%. Led TAM/SAM/SOM analysis identifying 15% profitability growth. Streamlined marketing collateral creation, cutting production time/costs by 25% and boosting customer satisfaction by 18%."
+      "duration": "Jan 2022- Dec 2024",
+      "description": "Spearheaded product launches, optimizing nomenclature, categorization, and tag management, which reduced product errors by 20% and improved search functionality.\n•\nDeveloped and executed market research strategies, identifying key segments and driving a 25% increase in market share of EcoXtructure products\n•\nBuilt and maintained Power BI/Excel dashboards to track KPIs, providing insights that increased sales conversion rates by 12%.\n•\nEnhanced product categorization and data management, improving internal alignment and reducing information search time by 40%.\n•\nLed TAM, SAM, and SOM analyses to identify growth opportunities, resulting in a 15% increase in product portfolio profitability.\n•\nStreamlined marketing collateral creation and conducted customer feedback analysis, leading to a 25% reduction in production time/costs and an 18% increase in customer satisfaction."
     },
     {
-      "title": "Operations Analyst",
-      "company": "Byju’s",
-      "duration": "Jun 2021 - Jan 2022",
-      "description": "Managed data cleaning, transformation, and analysis using Excel, Salesforce, and LMS. Ensured data quality assurance, generated reports, and handled customer service operations for billing and collections."
+      "title": "Operations Analyst- Data",
+      "company": "Byjus",
+      "duration": "Jun 2021- Jan 2022",
+      "description": "Experience in data management, including cleaning, transformation, and analysis, using tools like Excel, Salesforce, and LMS. Skilled in data quality assurance, report generation, and customer service tasks related to billing and collections."
     }
   ],
-
   "education": [
     {
-      "degree": "Master of Science (MS) in Artificial Intelligence and Machine Learning",
-      "institution": "Christ Deemed to be University",
-      "year": "2025 - Present",
-      "description": "CGPA: 6.1"
-    },
-    {
-      "degree": "Master of Business Administration (MBA) in Marketing",
-      "institution": "Christ Deemed to be University",
-      "year": "2020 - 2021",
-      "description": "CGPA: 6.1"
-    },
-    {
-      "degree": "Bachelor of Science (BSc) in Physics",
-      "institution": "Srimad Andavan Arts and Science College",
+      "degree": "Bachelor of Science- Physics",
+      "institution": "Srimad Andavan arts and science college",
       "year": "2016 - 2019",
-      "description": "CGPA: 6.5"
+      "description": "Apeiron Event Winner "
+    },
+    {
+      "degree": "Master of Business Administration",
+      "institution": "Christ Deemed to be university",
+      "year": "2019-2021",
+      "description": "Student councillor"
+    },
+    {
+      "degree": "Master of science- AI ML",
+      "institution": "Christ Deemed to be university",
+      "year": "2025-2027",
+      "description": ""
     }
   ],
-
-  "projects": [
+  "projects": [],
+  "blogs": [],
+  "certifications": [
     {
-      "pdfUrl": "ppt1.pdf",
-      "title": "Netflix Portfolio - Feature Enhancement Project",
-      "description": "Proposed feature additions — Live Streaming, Group Watch, and Audio Movies — aimed at improving Netflix’s social engagement and accessibility. Designed to address shared-viewing pain points and enhance content flexibility. Expected to increase session duration, retention, and viral growth.",
-      "link": "https://www.figma.com/design/d4ddQjKyCkK5OTfgRhznFy/NETFLIX--Out?node-id=0-1"
+      "title": "PSPO",
+      "issuer": "Scrum.org",
+      "year": "2025"
     }
   ],
-
-  "blogs": [
-    {
-      "title": "How Steve Jobs's Personal Trauma Shaped the iPhone in Your Hand",
-      "subheading": "Not all ideas come from apples falling from trees — some are born from personal battles.",
-      "date": "2025-11-04",
-      "image": "https://i.pinimg.com/736x/0d/a3/6f/0da36fc09e9a726b4175cb49616c287a.jpg",
-      "imageCaption": "Steve Jobs - 1982",
-      "content": "Steve Jobs: The Man Who Connected His Dots\n\nEvery big personality has a story, and Steve Jobs was no different. He was a tapestry of brilliance and flaws. To understand his products, you must understand his pain, control, and obsession with purity.\n\nFrom his adoption trauma came a desire for complete control — birthing Apple’s closed ecosystem. From his father’s advice came craftsmanship — even the unseen parts mattered. From India, he learne
+  "resumeUrl": "resume.pdf",
+  "contactEmail": "bharathvishal.personal@gmail.com"
+}
