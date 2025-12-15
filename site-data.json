@@ -2,69 +2,10 @@
   "heroName": "Hi – I'm Bharath",
   "heroTag": "I bring human simplicity into complex AI systems.",
   "photo": "Images/photo.png",
-
   "about": "Dynamic Product Analyst with 3+ years of experience in energy automation and electronics. Expertise in data analysis, product management, and marketing strategy, driving 15% market share growth and $3M in annual revenue at Abracon. Skilled in Power BI, Excel, and cross-functional collaboration to optimize product roadmaps, enhance customer satisfaction, and improve operational efficiency. Proven track record of exceeding goals and driving profitability.",
-
   "skills": [
-    "Python",
-    "SQL",
-    "Power BI",
-    "Tableau",
-    "Excel",
-    "Scikit-learn",
-    "Pandas",
-    "NumPy",
-    "Matplotlib",
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "REST API",
-    "JSON",
-    "Git",
-    "GitHub",
-    "Figma",
-    "Adobe XD",
-    "Jira",
-    "Confluence",
-    "Google Analytics",
-    "Mixpanel",
-    "Amplitude",
-    "AI",
-    "Machine Learning",
-    "NLP",
-    "Data Visualization",
-    "Data Cleaning",
-    "Feature Engineering",
-    "Automation",
-    "Forecasting",
-    "A/B Testing",
-    "Trello",
-    "Asana",
-    "Monday.com",
-    "ClickUp",
-    "Productboard",
-    "Aha!",
-    "Roadmunk",
-    "Airfocus",
-    "Typeform",
-    "SurveyMonkey",
-    "Hotjar",
-    "UserTesting",
-    "Notion",
-    "Miro",
-    "Coda",
-    "Slack",
-    "Sketch",
-    "InVision",
-    "Canva",
-    "Photoshop",
-    "After Effects",
-    "Premiere Pro",
-    "Microsoft 365",
-    "Dynamics",
-    "SharePoint"
+    "Python | SQL | Pandas | NumPy | Scikit-learn |  | A/B Testing | Power BI | Tableau | Google Analytics | API| Jira | Confluence | Productboard | Git | GitHub | HTML | CSS | JavaScript | Matplotlib | Adobe creative Suite| Figma"
   ],
-
   "experience": [
     {
       "title": "Senior Product Analyst",
@@ -85,7 +26,6 @@
       "description": "Handled data cleaning, transformation, and analysis using Excel, Salesforce, and LMS. Ensured data quality, report generation, and customer service processes related to billing and collections."
     }
   ],
-
   "education": [
     {
       "degree": "Bachelor of Science in Physics",
@@ -106,7 +46,6 @@
       "description": ""
     }
   ],
-
   "projects": [
     {
       "title": "Netflix Portfolio - Feature Enhancement Project",
@@ -114,8 +53,15 @@
       "pdfUrl": "Projects/ppt1.pdf"
     }
   ],
-
   "blogs": [
+    {
+      "title": "Indian AI scenario, Natural selection and Caste ",
+      "subheading": "This articles closely follows why India, A nation once was able to do so well in Space tech lagged behind Supercomputers , Chips and AI",
+      "date": "2025-12-15",
+      "image": "https://i.pinimg.com/1200x/90/c9/df/90c9df211c9a10a3e6fd461b1253fd35.jpg",
+      "imageCaption": "Jensen huang, The CEO of Nvidia with his latest AI CHIP",
+      "content": "Here’s a **crisp, evidence-backed rewrite** of your argument for a blog post — *critique plus data* — while keeping tone analytical and clear, not inflammatory:\n\n---\n\n## **Why India Excelled in Budget Space Tech — Yet Struggles to Compete With China in Innovation and AI**\n\nIndia’s achievement in space technology, especially with **ISRO’s cost-efficient missions**, shows remarkable engineering ingenuity. India delivered missions like **Chandrayaan-3 at a tiny fraction of global costs**, but this success doesn’t automatically translate into broad scientific competitiveness — especially compared with China.\n\n### **1. India’s Innovation Gap vs China (Data Speaks)**\n\n* China files **far more patents and research output** than India. While India filed ~82,000 patents domestically in 2023, China’s filings and global participation are much larger across innovation sectors. ([MIWA][1])\n* China produces the **largest volume of scientific publications** worldwide, whereas India’s research output is significantly lower. ([MIWA][1])\n* India’s **R&D expenditure is ~0.6–0.7% of GDP**, far below China’s **~2.5%**, which translates into more infrastructure, labs, and researcher hiring. ([The Perfect Voice][2])\n\nThis imbalance in investment and scale helps explain why China leads in areas like **AI, semiconductor technology, and space missions at scale**, rather than just **low-cost engineering feats**.\n\n---\n\n### **2. Structural Issues in Education and Research Deployment**\n\n#### **Access and Quality Gaps**\n\n* India’s **tertiary enrollment (~27–34%)** is much lower than China’s, meaning fewer young people reach advanced education. ([Medium][3])\n* Teacher shortages and low student-teacher ratios hamper research mentoring and innovation culture. ([NDTV India][4])\n\nChina’s centralized approach to education ensures broader participation even from rural regions and aggressive investment in STEM, which feeds its research system.\n\n---\n\n### **3. Caste, Inclusion, and Unequal Opportunity**\n\nIndia constitutionally aims for **social equity via reservation**, but data shows persistent gaps in higher education:\n\n* Despite reservation policies, a large proportion of faculty and doctoral admission seats — especially in elite institutions — are filled by general category applicants, while representation from SC/ST/OBC is lower than their population share. ([Chahal Academy][5])\n* Dropout rates of students from marginalized communities in central universities are disproportionately high, indicating deeper barriers beyond seat quotas. ([Chahal Academy][5])\n* Caste-based discrimination within institutions remains reported by students, adding social barriers to academic progress. ([DW][6])\n\nSocioeconomic background, not just academic merit, influences who benefits most from elite education — affecting long-term innovation pipelines.\n\n---\n\n### **4. The Brain Drain and Institutional Incentives**\n\nIndian researchers and engineers often **move abroad** for better funding, facilities, and job prospects — weakening domestic research ecosystems. ([CivilsDaily][7])\n\nBy contrast, China has programs to **repatriate talent**, align research with national goals, and support industry–academia collaboration.\n\n---\n\n### **5. Wealth vs. Education Investment Debate**\n\nIndia still often routes national priority and funding toward immediate **economic welfare**, consumption, and services, while systemic public investment in **basic and applied research, infrastructure, and innovation incentives** trails behind. China’s long-term strategy prioritizes **technology capability first**, then economic commercialization.\n\n---\n\n## **So What Can We Conclude?**\n\nIndia’s challenges vis-à-vis China are **not cultural destiny alone** — they are **institutional, structural, and systemic**:\n\n✔ India can produce *brilliant cost-efficient engineering achievements*\n✘ But it struggles to build *broad, deeply funded, and equitable research ecosystems*\n\nReasons include:\n\n* Lower overall R&D spending\n* Uneven access to high-quality education and research mentorship\n* Social and economic inequality slowing broad talent development\n* Historic brain drain\n\nAs a result, India’s educational and innovation system delivers **islands of excellence** (like ISRO, IITs) but lacks the **scale, inclusivity, and ecosystem alignment** that help China compete on global technology fronts.\n\n---\n\n## **Data Summary (For Quick Reference)**\n\n| **Metric**                       |  **India** |                                              **China** |\n| -------------------------------- | ---------: | -----------------------------------------------------: |\n| R&D Spending (% of GDP)          |  ~0.6–0.7% |                         ~2.5% ([The Perfect Voice][2]) |\n| Patents (Domestic filings)       |   ~82,000+ | Several hundred thousand globally reported ([MIWA][1]) |\n| Tertiary Enrollment              |    ~27–34% |    Much higher, sustained policy support ([Medium][3]) |\n| Caste gaps in elite institutions | Persistent |                           Not structurally caste-based |\n\n---\n\nIf you want, I can help you **expand this into a full essay** with clear section headings, examples, and citations formatted for publishing on your blog.\n\n[1]: https://www.miwa.org.in/post/can-india-match-china-s-stem-success-by-rethinking-its-higher-education-model?utm_source=chatgpt.com \"🎓 Can India Match China’s STEM Success by Rethinking its Higher Education Model?\"\n[2]: https://www.theperfectvoice.in/post/india-s-choice-compete-with-china-or-create-differently?utm_source=chatgpt.com \"India’s Choice: Compete with China or Create Differently\"\n[3]: https://medium.com/%40therationalist/indias-education-system-vs-china-s-a-tale-of-ambition-access-and-outcomes-bda4015bce8a?utm_source=chatgpt.com \"India’s Education System vs. China’s: A Tale of Ambition, Access, and Outcomes | by The Rationalist | Medium\"\n[4]: https://ndtv.in/career/indias-higher-education-student-teacher-ratio-lower-than-china-and-brazil-2069722?utm_source=chatgpt.com \"भारत में उच्च शिक्षा के लिए चीन और ब्राजील से भी कम हैं टीचर्स, ये है छात्र-शिक्षक रेशियो | India's Higher Education Student-Teacher Ratio Lower Than China and Brazil\"\n[5]: https://chahalacademy.com/current-affairs/28-Dec-2024/1674?utm_source=chatgpt.com \"The Hindu Editorial, : 28 Dec 2024\"\n[6]: https://www.dw.com/hi/why-indias-top-tech-universities-cant-shake-off-caste-bias/a-72158046?utm_source=chatgpt.com \"भारत के तकनीकी संस्थानों में जाति भेदभाव का दंश सहते छात्र – DW – 07.04.2025\"\n[7]: https://www.civilsdaily.com/story/promoting-science-and-technology/?utm_source=chatgpt.com \"Promoting Science and Technology - Missions,Policies & Schemes - Civilsdaily\"\n"
+    },
     {
       "title": "How Steve Jobs's Personal Trauma Shaped the iPhone in Your Hand",
       "subheading": "Not all ideas come up from apple falling from tree, some can be result of years of personal issues.",
@@ -125,7 +71,6 @@
       "content": "Steve Jobs: The Man Who Connected His Dots. Every big personality has a story, and Steve Jobs was no different. He was like a complicated tapestry - full of bright threads and dark patches. His adoption trauma made him crave control, leading to Apple’s self-contained ecosystem. From calligraphy, he learned design elegance; from India, simplicity; from his father, integrity. His pursuit of purity shaped Apple’s philosophy and even his personal health journey. His life’s dots — pain, art, simplicity — connected to create the iPhone in your hand today."
     }
   ],
-
   "certifications": [
     {
       "title": "PSPO",
@@ -133,7 +78,6 @@
       "year": "2025"
     }
   ],
-
   "resumeUrl": "resume.pdf",
   "contactEmail": "bharathvishal.personal@gmail.com"
 }
